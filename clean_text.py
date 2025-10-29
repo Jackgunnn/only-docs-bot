@@ -52,3 +52,4 @@ with open("cleaned_sentences.txt", "w", encoding="utf-8") as f:
     f.write(cleaned)
 
 print("✅ Sentence-per-line text saved to cleaned_sentences.txt")
+#qwertyu
