@@ -14,7 +14,9 @@ print(f"Found {len(markdown_files)} markdown files.")
 print(markdown_files)
 
 #read_files
+i = 1
 for md_path in markdown_files:
     with open(md_path, "r", encoding="utf-8") as f:
         raw_text = f.read()
-        print(raw_text)
+        print(i, raw_text)
+        i+=1
