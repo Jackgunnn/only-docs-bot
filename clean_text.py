@@ -28,17 +28,17 @@ def clean_text(text):
 
     # 7️⃣ Normalize all existing line breaks to spaces
     text = re.sub(r"\n+", " ", text)
-    text = re.sub(r"[ \t]+", " ", text)  # remove extra spaces
-    text = text.strip()
+    text = re.sub(r"[ \t]+", " ", text).strip()
 
-    # 8️⃣ Add line break after each meaningful sentence
-    text = re.sub(r'([.!?])\s+(?=[A-Z0-9])', r'\1\n', text)
+    # 8️⃣ Split sentences → remove punctuation → newline
+    text = re.sub(r'[.!?]\s+(?=[A-Z0-9])', r'\n', text)
 
     # 9️⃣ Restore code blocks
     for key, value in code_blocks.items():
         text = text.replace(key, value)
 
     return text
+
 
 # --- Read raw file ---
 with open("all_raw_text.txt", "r", encoding="utf-8") as f:
@@ -52,4 +52,3 @@ with open("cleaned_sentences.txt", "w", encoding="utf-8") as f:
     f.write(cleaned)
 
 print("✅ Sentence-per-line text saved to cleaned_sentences.txt")
-#qwertyu
