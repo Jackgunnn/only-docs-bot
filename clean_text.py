@@ -41,14 +41,14 @@ def clean_text(text):
 
 
 # --- Read raw file ---
-with open("all_raw_text.txt", "r", encoding="utf-8") as f:
+with open("data/all_raw_text.txt", "r", encoding="utf-8") as f:
     raw = f.read()
 
 # --- Clean and split sentences ---
 cleaned = clean_text(raw)
 
 # --- Save to a new text file ---
-with open("cleaned_sentences.txt", "w", encoding="utf-8") as f:
+with open("data/cleaned_sentences.txt", "w", encoding="utf-8") as f:
     f.write(cleaned)
 
 print("✅ Sentence-per-line text saved to cleaned_sentences.txt")
