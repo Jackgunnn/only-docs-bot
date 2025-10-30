@@ -1,0 +1,1021 @@
+FILE: ./raw content get-started docker-overview.md Docker is an open platform for developing shipping and running applications
+Docker enables you to separate your applications from your infrastructure so you can deliver software quickly
+With Docker you can manage your infrastructure in the same ways you manage your applications
+By taking advantage of Docker s methodologies for shipping testing and deploying code you can significantly reduce the delay between writing code and running it in production
+The Docker platform Docker provides the ability to package and run an application in a loosely isolated environment called a container
+The isolation and security lets you run many containers simultaneously on a given host
+Containers are lightweight and contain everything needed to run the application so you don t need to rely on what s installed on the host
+You can share containers while you work and be sure that everyone you share with gets the same container that works in the same way
+Docker provides tooling and a platform to manage the lifecycle of your containers: Develop your application and its supporting components using containers
+The container becomes the unit for distributing and testing your application
+When you re ready deploy your application into your production environment as a container or an orchestrated service
+This works the same whether your production environment is a local data center a cloud provider or a hybrid of the two
+What can I use Docker for
+Fast consistent delivery of your applications Docker streamlines the development lifecycle by allowing developers to work in standardized environments using local containers which provide your applications and services
+Containers are great for continuous integration and continuous delivery CI/CD workflows
+Consider the following example scenario: Your developers write code locally and share their work with their colleagues using Docker containers
+They use Docker to push their applications into a test environment and run automated and manual tests
+When developers find bugs they can fix them in the development environment and redeploy them to the test environment for testing and validation
+When testing is complete getting the fix to the customer is as simple as pushing the updated image to the production environment
+Responsive deployment and scaling Docker s container-based platform allows for highly portable workloads
+Docker containers can run on a developer s local laptop on physical or virtual machines in a data center on cloud providers or in a mixture of environments
+Docker s portability and lightweight nature also make it easy to dynamically manage workloads scaling up or tearing down applications and services as business needs dictate in near real time
+Running more workloads on the same hardware Docker is lightweight and fast
+It provides a viable cost-effective alternative to hypervisor-based virtual machines so you can use more of your server capacity to achieve your business goals
+Docker is perfect for high density environments and for small and medium deployments where you need to do more with fewer resources
+Docker architecture Docker uses a client-server architecture
+The Docker client talks to the Docker daemon which does the heavy lifting of building running and distributing your Docker containers
+The Docker client and daemon can run on the same system or you can connect a Docker client to a remote Docker daemon
+The Docker client and daemon communicate using a REST API over UNIX sockets or a network interface
+Another Docker client is Docker Compose that lets you work with applications consisting of a set of containers. 
+Docker Architecture diagram images/docker-architecture.webp The Docker daemon The Docker daemon CODE0 listens for Docker API requests and manages Docker objects such as images containers networks and volumes
+A daemon can also communicate with other daemons to manage Docker services
+The Docker client The Docker client CODE1 is the primary way that many Docker users interact with Docker
+When you use commands such as CODE2 the client sends these commands to CODE3 which carries them out
+The CODE4 command uses the Docker API
+The Docker client can communicate with more than one daemon
+Docker Desktop Docker Desktop is an easy-to-install application for your Mac Windows or Linux environment that enables you to build and share containerized applications and microservices
+Docker Desktop includes the Docker daemon CODE5 the Docker client CODE6 Docker Compose Docker Content Trust Kubernetes and Credential Helper
+For more information see Docker Desktop /manuals/desktop/ index.md 
+Docker registries A Docker registry stores Docker images
+Docker Hub is a public registry that anyone can use and Docker looks for images on Docker Hub by default
+You can even run your own private registry
+When you use the CODE7 or CODE8 commands Docker pulls the required images from your configured registry
+When you use the CODE9 command Docker pushes your image to your configured registry
+Docker objects When you use Docker you are creating and using images containers networks volumes plugins and other objects
+This section is a brief overview of some of those objects
+Images An image is a read-only template with instructions for creating a Docker container
+Often an image is based on another image with some additional customization
+For example you may build an image which is based on the CODE10 image but installs the Apache web server and your application as well as the configuration details needed to make your application run
+You might create your own images or you might only use those created by others and published in a registry
+To build your own image you create a Dockerfile with a simple syntax for defining the steps needed to create the image and run it
+Each instruction in a Dockerfile creates a layer in the image
+When you change the Dockerfile and rebuild the image only those layers which have changed are rebuilt
+This is part of what makes images so lightweight small and fast when compared to other virtualization technologies
+Containers A container is a runnable instance of an image
+You can create start stop move or delete a container using the Docker API or CLI
+You can connect a container to one or more networks attach storage to it or even create a new image based on its current state
+By default a container is relatively well isolated from other containers and its host machine
+You can control how isolated a container s network storage or other underlying subsystems are from other containers or from the host machine
+A container is defined by its image as well as any configuration options you provide to it when you create or start it
+When a container is removed any changes to its state that aren t stored in persistent storage disappear
+Example CODE11 command The following command runs an CODE12 container attaches interactively to your local command-line session and runs CODE13 
+CODE14 When you run this command the following happens assuming you are using the default registry configuration : If you don t have the CODE15 image locally Docker pulls it from your configured registry as though you had run CODE16 manually
+Docker creates a new container as though you had run a CODE17 command manually
+Docker allocates a read-write filesystem to the container as its final layer
+This allows a running container to create or modify files and directories in its local filesystem
+Docker creates a network interface to connect the container to the default network since you didn t specify any networking options
+This includes assigning an IP address to the container
+By default containers can connect to external networks using the host machine s network connection
+Docker starts the container and executes CODE18 
+Because the container is running interactively and attached to your terminal due to the CODE19 and CODE20 flags you can provide input using your keyboard while Docker logs the output to your terminal
+When you run CODE21 to terminate the CODE22 command the container stops but isn t removed
+You can start it again or remove it
+The underlying technology Docker is written in the Go programming language https://golang.org/ and takes advantage of several features of the Linux kernel to deliver its functionality
+Docker uses a technology called CODE23 to provide the isolated workspace called the container
+When you run a container Docker creates a set of namespaces for that container
+These namespaces provide a layer of isolation
+Each aspect of a container runs in a separate namespace and its access is limited to that namespace
+Next steps Install Docker /get-started/get-docker.md Get started with Docker /get-started/introduction/ index.md FILE: ./raw content get-started get-docker.md Docker is an open platform for developing shipping and running applications
+Docker allows you to separate your applications from your infrastructure so you can deliver software quickly
+With Docker you can manage your infrastructure in the same ways you manage your applications
+By taking advantage of Docker s methodologies for shipping testing and deploying code quickly you can significantly reduce the delay between writing code and running it in production
+You can download and install Docker on multiple platforms
+Refer to the following section and choose the best installation path for you
+Docker Desktop terms Commercial use of Docker Desktop in larger enterprises more than 250 employees OR more than 10 million USD in annual revenue requires a paid subscription https://www.docker.com/pricing/ . card title Docker Desktop for Mac description A native application using the macOS sandbox security model that delivers all Docker tools to your Mac. link /desktop/setup/install/mac-install/ icon /icons/AppleMac.svg card title Docker Desktop for Windows description A native Windows application that delivers all Docker tools to your Windows computer. link /desktop/setup/install/windows-install/ icon /icons/Windows.svg card title Docker Desktop for Linux description A native Linux application that delivers all Docker tools to your Linux computer. link /desktop/setup/install/linux/ icon /icons/Linux.svg !NOTE If you re looking for information on how to install Docker Engine see Docker Engine installation overview /engine/install/ 
+FILE: ./raw content get-started resources.md Docker and the broader community of Docker experts have put together many different ways to get further training and hands-on experience with Docker
+Expand your understanding of Docker and Kubernetes with these additional free and paid resources
+Docker Training Expand your knowledge on all things Docker with basic to advanced trainings from Docker experts https://www.docker.com/trainings/ 
+You can find recorded content at your own convenience or register for a live session to participate in Q A
+Hosted labs These self-paced and hands-on workshops use a free hosted environment Play with Kubernetes https://labs.play-with-k8s.com/ that doesn t require any installation
+Follow along and learn more about Kubernetes
+Kubernetes Workshop https://training.play-with-kubernetes.com/kubernetes-workshop/ Labs are free but require registration with a Docker ID
+Self-guided tutorials Created by experts in the Docker community these free tutorials provide guided step-by-step workflows for working with the Docker platform
+Integrating Docker with Your IDE Java Development: Eclipse https://training.play-with-docker.com/java-debugging-eclipse/ Java Development: IntelliJ https://training.play-with-docker.com/java-debugging-intellij/ Java Development: Netbeans https://training.play-with-docker.com/java-debugging-netbeans/ Live Debugging Node.js with Docker and Visual Studio Code https://training.play-with-docker.com/nodejs-live-debugging/ Windows Containers Windows Container Setup https://training.play-with-docker.com/windows-containers-setup/ Windows Container Basics https://training.play-with-docker.com/windows-containers-basics/ Windows Containers Multi-Container Applications https://training.play-with-docker.com/windows-containers-multicontainer/ Books If books are your preferred learning style check out these written by the Docker Captains https://www.docker.com/community/captains 
+Docker Captain is a distinction that Docker awards to select members of the community that are both experts in their field and are committed to sharing their Docker knowledge with others
+Learn Docker in a Month of Lunches https://www.manning.com/books/learn-docker-in-a-month-of-lunches Elton Stoneman
+Use the code CODE24 for a 40 discount
+Docker on Windows: From 101 to Production with Docker on Windows https://www.amazon.com/Docker-Windows-Elton-Stoneman-ebook/dp/B0711Y4J9K/ Elton Stoneman Learn Kubernetes in a Month of Lunches https://www.manning.com/books/learn-kubernetes-in-a-month-of-lunches Elton Stoneman
+Use the code CODE25 for a 40 discount
+Docker in Action 2nd Edition https://www.manning.com/books/docker-in-action-second-edition Jeff Nickoloff Oct 2019 The Kubernetes Book https://www.amazon.com/Kubernetes-Book-Nigel-Poulton/dp/1521823634/ref sr 1 3?ie UTF8 qid 1509660871 sr 8-3 keywords nigel poulton Nigel Poulton Nov 2018 Docker Deep Dive https://www.amazon.com/Docker-Deep-Dive-Nigel-Poulton-ebook/dp/B01LXWQUFF Nigel Poulton 2024 Edition Portuguese Docker para desenvolvedores https://leanpub.com/dockerparadesenvolvedores 2017 by Rafael Gomes Spanish rase una vez Docker https://leanpub.com/erase-una-vez-docker Manuel Morej n March 2023 Spanish rase una vez Kubernetes https://leanpub.com/erase-una-vez-kubernetes Manuel Morej n Jan 2022 CLI cheat sheet The Docker CLI cheat sheet /get-started/docker cheatsheet.pdf features the common Docker CLI commands for easy reference
+It covers working with Images Containers Docker Hub and other general purpose commands
+Self-Paced online learning A number of Docker Captains have also created video courses on Docker and Kubernetes
+Bret Fisher https://www.bretfisher.com/courses/ : Docker Mastery Docker Swarm Mastery Docker Mastery for Node.js Projects Elton Stoneman https://docker4.net/udemy : Docker for .NET Apps - on Linux and Windows
+Includes the discount code CODE26 
+Nick Janetakis https://nickjanetakis.com/courses/ Dive into Docker Docker for DevOps Nigel Poulton https://nigelpoulton.com/video-courses : Kubernetes 101 Getting Started with Kubernetes Docker and Kubernetes: The Big Picture Kubernetes Deep Dive Docker Deep Dive Arun Gupta https://www.lynda.com/Docker-tutorials/Docker-Java-developers/576584-2.html : Docker for Java Developers Ajeet Singh Raina https://collabnix.com/ : Docker and Kubernetes Labs French Luc Juggery https://www.udemy.com/user/lucjuggery/ : Introduction to Kubernetes The Docker Platform Many of the courses are fee-based Community-translated docs !NOTE The following section contains a subset of Docker docs that are translated by community members
+This is not an officially translated version of Docker docs and it may not be up to date
+You must use the community-translated docs at your own discretion
+Subset of Docker docs in Japanese https://docs.docker.jp/index.html translated by Docker Captain Masahito Zembutsu https://github.com/zembutsu 
+FILE: ./raw content get-started index.md If you re new to Docker this section guides you through the essential resources to get started
+Follow the guides to help you get started and learn how Docker can optimize your development workflows
+For more advanced concepts and scenarios in Docker see Guides /guides/ 
+Foundations of Docker Install Docker and jump into discovering what Docker is. grid items get-started Learn the foundational concepts and workflows of Docker. grid items get-started2 FILE: ./raw content get-started docker-concepts index.md FILE: ./raw content get-started docker-concepts building-images build-tag-and-publish-an-image.md youtube-embed chiiGLlYRlY Explanation In this guide you will learn the following: Building images - the process of building an image based on a CODE27 Tagging images - the process of giving an image a name which also determines where the image can be distributed Publishing images - the process to distribute or share the newly created image using a container registry Building images Most often images are built using a Dockerfile
+The most basic CODE28 command might look like the following: CODE29 The final CODE30 in the command provides the path or URL to the build context https://docs.docker.com/build/concepts/context/ what-is-a-build-context 
+At this location the builder will find the CODE31 and other referenced files
+When you run a build the builder pulls the base image if needed and then runs the instructions specified in the Dockerfile
+With the previous command the image will have no name but the output will provide the ID of the image
+As an example the previous command might produce the following output: CODE32 With the previous output you could start a container by using the referenced image: CODE33 That name certainly isn t memorable which is where tagging becomes useful
+Tagging images Tagging images is the method to provide an image with a memorable name
+However there is a structure to the name of an image
+A full image name has the following structure: CODE34 CODE35 : The optional registry hostname where the image is located
+If no host is specified Docker s public registry at CODE36 is used by default
+CODE37 : The registry port number if a hostname is provided CODE38 : The path of the image consisting of slash-separated components
+For Docker Hub the format follows CODE39 where namespace is either a user s or organization s name
+If no namespace is specified CODE40 is used which is the namespace for Docker Official Images
+CODE41 : A custom human-readable identifier that s typically used to identify different versions or variants of an image
+If no tag is specified CODE42 is used by default
+Some examples of image names include: CODE43 equivalent to CODE44 : this pulls an image from the CODE45 registry the CODE46 namespace the CODE47 image repository and the CODE48 tag
+CODE49 equivalent to CODE50 : this pulls an image from the CODE51 registry the CODE52 namespace the CODE53 image repository and the CODE54 tag CODE55 : this pulls an image from the GitHub Container Registry the CODE56 namespace the CODE57 image repository and the CODE58 tag To tag an image during a build add the CODE59 or CODE60 flag: CODE61 If you ve already built an image you can add another tag to the image by using the CODE62 https://docs.docker.com/engine/reference/commandline/image tag/ command: CODE63 Publishing images Once you have an image built and tagged you re ready to push it to a registry
+To do so use the CODE64 https://docs.docker.com/engine/reference/commandline/image push/ command: CODE65 Within a few seconds all of the layers for your image will be pushed to the registry
+Requiring authentication Before you re able to push an image to a repository you will need to be authenticated
+To do so simply use the docker login https://docs.docker.com/engine/reference/commandline/login/ command. .information Try it out In this hands-on guide you will build a simple image using a provided Dockerfile and push it to Docker Hub
+Set up Get the sample application
+If you have Git you can clone the repository for the sample application
+Otherwise you can download the sample application
+Choose one of the following options. tabs tab name Clone with git Use the following command in a terminal to clone the sample application repository
+CODE66 /tab tab name Download Download the source and extract it. button url https://github.com/docker/getting-started-todo-app/raw/cd61f824da7a614a8298db503eed6630eeee33a3/app.zip text Download the source /tab /tabs Download and install https://www.docker.com/products/docker-desktop/ Docker Desktop
+If you don t have a Docker account yet create one now https://hub.docker.com/ 
+Once you ve done that sign in to Docker Desktop using that account
+Build an image Now that you have a repository on Docker Hub it s time for you to build an image and push it to the repository
+Using a terminal in the root of the sample app repository run the following command
+Replace CODE67 with your Docker Hub username: CODE68 As an example if your username is CODE69 you would run the command: CODE70 Once the build has completed you can view the image by using the following command: CODE71 The command will produce output similar to the following: CODE72 You can actually view the history or how the image was created by using the docker image history /reference/cli/docker/image/history/ command: CODE73 You ll then see output similar to the following: CODE74 This output shows the layers of the image highlighting the layers you added and those that were inherited from your base image
+Push the image Now that you have an image built it s time to push the image to a registry
+Push the image using the docker push /reference/cli/docker/image/push/ command: CODE75 If you receive a CODE76 make sure you are both logged in and that your Docker username is correct in the image tag
+After a moment your image should be pushed to Docker Hub
+Additional resources To learn more about building tagging and publishing images visit the following resources: What is a build context? /build/concepts/context/ what-is-a-build-context docker build reference /engine/reference/commandline/image build/ docker image tag reference /engine/reference/commandline/image tag/ docker push reference /engine/reference/commandline/image push/ What is a registry? /get-started/docker-concepts/the-basics/what-is-a-registry/ Next steps Now that you have learned about building and publishing images it s time to learn how to speed up the build process using the Docker build cache. button text Using the build cache url using-the-build-cache FILE: ./raw content get-started docker-concepts building-images multi-stage-builds.md youtube-embed vR185cjwxZ8 Explanation In a traditional build all build instructions are executed in sequence and in a single build container: downloading dependencies compiling code and packaging the application
+All those layers end up in your final image
+This approach works but it leads to bulky images carrying unnecessary weight and increasing your security risks
+This is where multi-stage builds come in
+Multi-stage builds introduce multiple stages in your Dockerfile each with a specific purpose
+Think of it like the ability to run different parts of a build in multiple different environments concurrently
+By separating the build environment from the final runtime environment you can significantly reduce the image size and attack surface
+This is especially beneficial for applications with large build dependencies
+Multi-stage builds are recommended for all types of applications
+For interpreted languages like JavaScript or Ruby or Python you can build and minify your code in one stage and copy the production-ready files to a smaller runtime image
+This optimizes your image for deployment
+For compiled languages like C or Go or Rust multi-stage builds let you compile in one stage and copy the compiled binaries into a final runtime image
+No need to bundle the entire compiler in your final image
+Here s a simplified example of a multi-stage build structure using pseudo-code
+Notice there are multiple CODE77 statements and a new CODE78 
+In addition the CODE79 statement in the second stage is copying CODE80 the previous stage
+CODE81 This Dockerfile uses two stages: The build stage uses a base image containing build tools needed to compile your application
+It includes commands to install build tools copy source code and execute build commands
+The final stage uses a smaller base image suitable for running your application
+It copies the compiled artifacts a JAR file for example from the build stage
+Finally it defines the runtime configuration using CODE82 or CODE83 for starting your application
+Try it out In this hands-on guide you ll unlock the power of multi-stage builds to create lean and efficient Docker images for a sample Java application
+You ll use a simple Hello World Spring Boot-based application built with Maven as your example
+Download and install https://www.docker.com/products/docker-desktop/ Docker Desktop
+Open this pre-initialized project https://start.spring.io/ !type maven-project language java platformVersion 3.4.0-M3 packaging jar jvmVersion 21 groupId com.example artifactId spring-boot-docker name spring-boot-docker description Demo 20project 20for 20Spring 20Boot packageName com.example.spring-boot-docker dependencies web to generate a ZIP file
+Here s how that looks: 
+A screenshot of Spring Initializr tool selected with Java 21 Spring Web and Spring Boot 3.4.0 images/multi-stage-builds-spring-initializer.webp?border true Spring Initializr https://start.spring.io/ is a quickstart generator for Spring projects
+It provides an extensible API to generate JVM-based projects with implementations for several common concepts like basic language generation for Java Kotlin and Groovy
+Select Generate to create and download the zip file for this project
+For this demonstration you ve paired Maven build automation with Java a Spring Web dependency and Java 21 for your metadata
+Navigate the project directory
+Once you unzip the file you ll see the following project directory structure: CODE84 The CODE85 directory contains your project s source code the CODE86 directory contains the test source and the CODE87 file is your project s Project Object Model POM 
+The CODE88 file is the core of a Maven project s configuration
+It s a single configuration file that contains most of the information needed to build a customized project
+The POM is huge and can seem daunting
+Thankfully you don t yet need to understand every intricacy to use it effectively
+Create a RESTful web service that displays Hello World! 
+Under the CODE89 directory you can modify your CODE90 file with the following content: CODE91 The CODE92 file starts by declaring your CODE93 package and importing necessary Spring frameworks
+This Java file creates a simple Spring Boot web application that responds with Hello World when a user visits its homepage
+Create the Dockerfile Now that you have the project you re ready to create the CODE94 
+Create a file named CODE95 in the same folder that contains all the other folders and files like src pom.xml etc. 
+In the CODE96 define your base image by adding the following line: CODE97 Now define the working directory by using the CODE98 instruction
+This will specify where future commands will run and the directory files will be copied inside the container image
+CODE99 Copy both the Maven wrapper script and your project s CODE100 file into the current working directory CODE101 within the Docker container
+CODE102 Execute a command within the container
+It runs the CODE103 command which uses the Maven wrapper CODE104 to download all dependencies for your project without building the final JAR file useful for faster builds 
+CODE105 Copy the CODE106 directory from your project on the host machine to the CODE107 directory within the container
+CODE108 Set the default command to be executed when the container starts
+This command instructs the container to run the Maven wrapper CODE109 with the CODE110 goal which will build and execute your Spring Boot application
+CODE111 And with that you should have the following Dockerfile: CODE112 Build the container image Execute the following command to build the Docker image: CODE113 Check the size of the Docker image by using the CODE114 command: CODE115 Doing so will produce output like the following: CODE116 This output shows that your image is 880MB in size
+It contains the full JDK Maven toolchain and more
+In production you don t need that in your final image
+Run the Spring Boot application Now that you have an image built it s time to run the container
+CODE117 You ll then see output similar to the following in the container log: CODE118 Access your Hello World page through your web browser at http://localhost:8080 http://localhost:8080 or via this curl command: CODE119 Use multi-stage builds Consider the following Dockerfile: CODE120 Notice that this Dockerfile has been split into two stages
+The first stage remains the same as the previous Dockerfile providing a Java Development Kit JDK environment for building the application
+This stage is given the name of builder
+The second stage is a new stage named CODE121 
+It uses a slimmer CODE122 image containing just the Java Runtime Environment JRE needed to run the application
+This image provides a Java Runtime Environment JRE which is enough for running the compiled application JAR file 
+For production use it s highly recommended that you produce a custom JRE-like runtime using jlink
+JRE images are available for all versions of Eclipse Temurin but CODE123 allows you to create a minimal runtime containing only the necessary Java modules for your application
+This can significantly reduce the size and improve the security of your final image
+Refer to this page https://hub.docker.com/ /eclipse-temurin for more information
+With multi-stage builds a Docker build uses one base image for compilation packaging and unit tests and then a separate image for the application runtime
+As a result the final image is smaller in size since it doesn t contain any development or debugging tools
+By separating the build environment from the final runtime environment you can significantly reduce the image size and increase the security of your final images
+Now rebuild your image and run your ready-to-use production build
+CODE124 This command builds a Docker image named CODE125 using the final stage from your CODE126 file located in the current directory. !NOTE In your multi-stage Dockerfile the final stage final is the default target for building
+This means that if you don t explicitly specify a target stage using the CODE127 flag in the CODE128 command Docker will automatically build the last stage by default
+You could use CODE129 to build only the builder stage with the JDK environment
+Look at the image size difference by using the CODE130 command: CODE131 You ll get output similar to the following: CODE132 Your final image is just 428 MB compared to the original build size of 880 MB
+By optimizing each stage and only including what s necessary you were able to significantly reduce the overall image size while still achieving the same functionality
+This not only improves performance but also makes your Docker images more lightweight more secure and easier to manage
+Additional resources Multi-stage builds /build/building/multi-stage/ Dockerfile best practices /develop/develop-images/dockerfile best-practices/ Base images /build/building/base-images/ Spring Boot Docker https://spring.io/guides/topicals/spring-boot-docker FILE: ./raw content get-started docker-concepts building-images understanding-image-layers.md youtube-embed wJwqtAkmtQA Explanation As you learned in What is an image? ../the-basics/what-is-an-image/ container images are composed of layers
+And each of these layers once created are immutable
+But what does that actually mean
+And how are those layers used to create the filesystem a container can use
+Image layers Each layer in an image contains a set of filesystem changes - additions deletions or modifications
+Let s look at a theoretical image: The first layer adds basic commands and a package manager such as apt
+The second layer installs a Python runtime and pip for dependency management
+The third layer copies in an application s specific requirements.txt file
+The fourth layer installs that application s specific dependencies
+The fifth layer copies in the actual source code of the application
+This example might look like: ! screenshot of the flowchart showing the concept of the image layers images/container image layers.webp?border true This is beneficial because it allows layers to be reused between images
+For example imagine you wanted to create another Python application
+Due to layering you can leverage the same Python base
+This will make builds faster and reduce the amount of storage and bandwidth required to distribute the images
+The image layering might look similar to the following: ! screenshot of the flowchart showing the benefits of the image layering images/container image layer reuse.webp?border true Layers let you extend images of others by reusing their base layers allowing you to add only the data that your application needs
+Stacking the layers Layering is made possible by content-addressable storage and union filesystems
+While this will get technical here s how it works: After each layer is downloaded it is extracted into its own directory on the host filesystem
+When you run a container from an image a union filesystem is created where layers are stacked on top of each other creating a new and unified view
+When the container starts its root directory is set to the location of this unified directory using CODE133 
+When the union filesystem is created in addition to the image layers a directory is created specifically for the running container
+This allows the container to make filesystem changes while allowing the original image layers to remain untouched
+This enables you to run multiple containers from the same underlying image
+Try it out In this hands-on guide you will create new image layers manually using the CODE134 https://docs.docker.com/reference/cli/docker/container/commit/ command
+Note that you ll rarely create images this way as you ll normally use a Dockerfile ./writing-a-dockerfile.md 
+But it makes it easier to understand how it s all working
+Create a base image In this first step you will create your own base image that you will then use for the following steps
+Download and install https://www.docker.com/products/docker-desktop/ Docker Desktop
+In a terminal run the following command to start a new container: CODE135 Once the image has been downloaded and the container has started you should see a new shell prompt
+This is running inside your container
+It will look similar to the following the container ID will vary : CODE136 Inside the container run the following command to install Node.js: CODE137 When this command runs it downloads and installs Node inside the container
+In the context of the union filesystem these filesystem changes occur within the directory unique to this container
+Validate if Node is installed by running the following command: CODE138 You should then see a Hello world! appear in the console
+Now that you have Node installed you re ready to save the changes you ve made as a new image layer from which you can start new containers or build new images
+To do so you will use the CODE139 https://docs.docker.com/reference/cli/docker/container/commit/ command
+Run the following command in a new terminal: CODE140 View the layers of your image using the CODE141 command: CODE142 You will see output similar to the following: CODE143 Note the Add node comment on the top line
+This layer contains the Node.js install you just made
+To prove your image has Node installed you can start a new container using this new image: CODE144 With that you should get a Hello again output in the terminal showing Node was installed and working
+Now that you re done creating your base image you can remove that container: CODE145 Base image definition A base image is a foundation for building other images
+It s possible to use any images as a base image
+However some images are intentionally created as building blocks providing a foundation or starting point for an application
+In this example you probably won t deploy this CODE146 image as it doesn t actually do anything yet
+But it s a base you can use for other builds
+Build an app image Now that you have a base image you can extend that image to build additional images
+Start a new container using the newly created node-base image: CODE147 Inside of this container run the following command to create a Node program: CODE148 To run this Node program you can use the following command and see the message printed on the screen: CODE149 In another terminal run the following command to save this container s changes as a new image: CODE150 This command not only creates a new image named CODE151 but also adds additional configuration to the image to set the default command when starting a container
+In this case you are setting it to automatically run CODE152 
+In a terminal outside of the container run the following command to view the updated layers: CODE153 You ll then see output that looks like the following
+Note the top layer comment has Add app and the next layer has Add node : CODE154 Finally start a new container using the brand new image
+Since you specified the default command you can use the following command: CODE155 You should see your greeting appear in the terminal coming from your Node program
+Now that you re done with your containers you can remove them using the following command: CODE156 Additional resources If you d like to dive deeper into the things you learned check out the following resources: CODE157 /reference/cli/docker/image/history/ CODE158 /reference/cli/docker/container/commit/ Next steps As hinted earlier most image builds don t use CODE159 
+Instead you ll use a Dockerfile which automates these steps for you. button text Writing a Dockerfile url writing-a-dockerfile FILE: ./raw content get-started docker-concepts building-images using-the-build-cache.md youtube-embed Ri6jMknjprY Explanation Consider the following Dockerfile that you created for the getting-started ./writing-a-dockerfile/ app
+CODE160 When you run the CODE161 command to create a new image Docker executes each instruction in your Dockerfile creating a layer for each command and in the order specified
+For each instruction Docker checks whether it can reuse the instruction from a previous build
+If it finds that you ve already executed a similar instruction before Docker doesn t need to redo it
+Instead it ll use the cached result
+This way your build process becomes faster and more efficient saving you valuable time and resources
+Using the build cache effectively lets you achieve faster builds by reusing results from previous builds and skipping unnecessary work
+In order to maximize cache usage and avoid resource-intensive and time-consuming rebuilds it s important to understand how cache invalidation works
+Here are a few examples of situations that can cause cache to be invalidated: Any changes to the command of a CODE162 instruction invalidates that layer
+Docker detects the change and invalidates the build cache if there s any modification to a CODE163 command in your Dockerfile
+Any changes to files copied into the image with the CODE164 or CODE165 instructions
+Docker keeps an eye on any alterations to files within your project directory
+Whether it s a change in content or properties like permissions Docker considers these modifications as triggers to invalidate the cache
+Once one layer is invalidated all following layers are also invalidated
+If any previous layer including the base image or intermediary layers has been invalidated due to changes Docker ensures that subsequent layers relying on it are also invalidated
+This keeps the build process synchronized and prevents inconsistencies
+When you re writing or editing a Dockerfile keep an eye out for unnecessary cache misses to ensure that builds run as fast and efficiently as possible
+Try it out In this hands-on guide you will learn how to use the Docker build cache effectively for a Node.js application
+Build the application Download and install https://www.docker.com/products/docker-desktop/ Docker Desktop
+Open a terminal and clone this sample application https://github.com/dockersamples/todo-list-app 
+CODE166 Navigate into the CODE167 directory: CODE168 Inside this directory you ll find a file named CODE169 with the following content: CODE170 Execute the following command to build the Docker image: CODE171 Here s the result of the build process: CODE172 The first line indicates that the entire build process took 20.0 seconds 
+The first build may take some time as it installs dependencies
+Rebuild without making changes
+Now re-run the CODE173 command without making any change in the source code or Dockerfile as shown: CODE174 Subsequent builds after the initial are faster due to the caching mechanism as long as the commands and context remain unchanged
+Docker caches the intermediate layers generated during the build process
+When you rebuild the image without making any changes to the Dockerfile or the source code Docker can reuse the cached layers significantly speeding up the build process
+CODE175 The subsequent build was completed in just 1.0 second by leveraging the cached layers
+No need to repeat time-consuming steps like installing dependencies
+Steps Description Time Taken 1st Run Time Taken 2nd Run 1 Load build definition from Dockerfile 0.0 seconds 0.0 seconds 2 Load metadata for docker.io/library/node:22-alpine 2.7 seconds 0.9 seconds 3 Load .dockerignore 0.0 seconds 0.0 seconds 4 Load build context Context size: 4.60MB 0.1 seconds 0.0 seconds 5 Set the working directory WORKDIR 0.1 seconds 0.0 seconds 6 Copy the local code into the container 0.0 seconds 0.0 seconds 7 Run yarn install --production 10.0 seconds 0.0 seconds 8 Exporting layers 2.2 seconds 0.0 seconds 9 Exporting the final image 3.0 seconds 0.0 seconds Going back to the CODE176 output you see that each command in the Dockerfile becomes a new layer in the image
+You might remember that when you made a change to the image the CODE177 dependencies had to be reinstalled
+Is there a way to fix this
+It doesn t make much sense to reinstall the same dependencies every time you build right
+To fix this restructure your Dockerfile so that the dependency cache remains valid unless it really needs to be invalidated
+For Node-based applications dependencies are defined in the CODE178 file
+You ll want to reinstall the dependencies if that file changes but use cached dependencies if the file is unchanged
+So start by copying only that file first then install the dependencies and finally copy everything else
+Then you only need to recreate the yarn dependencies if there was a change to the CODE179 file
+Update the Dockerfile to copy in the CODE180 file first install dependencies and then copy everything else in
+CODE181 Create a file named CODE182 in the same folder as the Dockerfile with the following contents
+CODE183 Build the new image: CODE184 You ll then see output similar to the following: CODE185 You ll see that all layers were rebuilt
+Perfectly fine since you changed the Dockerfile quite a bit
+Now make a change to the CODE186 file like change the title to say The Awesome Todo App 
+Build the Docker image
+This time your output should look a little different
+CODE187 You ll then see output similar to the following: CODE188 First off you should notice that the build was much faster
+You ll see that several steps are using previously cached layers
+That s good news you re using the build cache
+Pushing and pulling this image and updates to it will be much faster as well
+By following these optimization techniques you can make your Docker builds faster and more efficient leading to quicker iteration cycles and improved development productivity
+Additional resources Optimizing builds with cache management /build/cache/ Cache Storage Backend /build/cache/backends/ Build cache invalidation /build/cache/invalidation/ Next steps Now that you understand how to use the Docker build cache effectively you re ready to learn about Multi-stage builds. button text Multi-stage builds url multi-stage-builds FILE: ./raw content get-started docker-concepts building-images writing-a-dockerfile.md youtube-embed Jx8zoIhiP4c Explanation A Dockerfile is a text-based document that s used to create a container image
+It provides instructions to the image builder on the commands to run files to copy startup command and more
+As an example the following Dockerfile would produce a ready-to-run Python application: CODE189 Common instructions Some of the most common instructions in a CODE190 include: CODE191 - this specifies the base image that the build will extend
+CODE192 - this instruction specifies the working directory or the path in the image where files will be copied and commands will be executed
+CODE193 - this instruction tells the builder to copy files from the host and put them into the container image
+CODE194 - this instruction tells the builder to run the specified command
+CODE195 - this instruction sets an environment variable that a running container will use
+CODE196 - this instruction sets configuration on the image that indicates a port the image would like to expose
+CODE197 - this instruction sets the default user for all subsequent instructions
+CODE198 - this instruction sets the default command a container using this image will run
+To read through all of the instructions or go into greater detail check out the Dockerfile reference https://docs.docker.com/engine/reference/builder/ 
+Try it out Just as you saw with the previous example a Dockerfile typically follows these steps: Determine your base image Install application dependencies Copy in any relevant source code and/or binaries Configure the final image In this quick hands-on guide you ll write a Dockerfile that builds a simple Node.js application
+If you re not familiar with JavaScript-based applications don t worry
+It isn t necessary for following along with this guide
+Set up Download this ZIP file https://github.com/docker/getting-started-todo-app/archive/refs/heads/build-image-from-scratch.zip and extract the contents into a directory on your machine
+If you d rather not download a ZIP file clone the https://github.com/docker/getting-started-todo-app project and checkout the CODE199 branch
+Creating the Dockerfile Now that you have the project you re ready to create the CODE200 
+Download and install https://www.docker.com/products/docker-desktop/ Docker Desktop
+Examine the project
+Explore the contents of CODE201 
+You ll notice that a CODE202 already exists
+It is a simple text file that you can open in any text or code editor
+Delete the existing CODE203 
+For this exercise you ll pretend you re starting from scratch and will create a new CODE204 
+Create a file named CODE205 in the CODE206 folder
+Dockerfile file extensions It s important to note that the CODE207 has no file extension
+Some editors will automatically add an extension to the file or complain it doesn t have one 
+In the CODE208 define your base image by adding the following line: CODE209 Now define the working directory by using the CODE210 instruction
+This will specify where future commands will run and the directory files will be copied inside the container image
+CODE211 Copy all of the files from your project on your machine into the container image by using the CODE212 instruction: CODE213 Install the app s dependencies by using the CODE214 CLI and package manager
+To do so run a command using the CODE215 instruction: CODE216 Finally specify the default command to run by using the CODE217 instruction: CODE218 And with that you should have the following Dockerfile: CODE219 This Dockerfile isn t production-ready yet It s important to note that this Dockerfile is not following all of the best practices yet by design 
+It will build the app but the builds won t be as fast or the images as secure as they could be
+Keep reading to learn more about how to make the image maximize the build cache run as a non-root user and multi-stage builds
+Containerize new projects quickly with CODE220 The CODE221 command will analyze your project and quickly create a Dockerfile a CODE222 and a CODE223 helping you get up and going
+Since you re learning about Dockerfiles specifically here you won t use it now
+But learn more about it here /engine/reference/commandline/init/ 
+Additional resources To learn more about writing a Dockerfile visit the following resources: Dockerfile reference /reference/dockerfile/ Dockerfile best practices /develop/develop-images/dockerfile best-practices/ Base images /build/building/base-images/ Getting started with Docker Init /reference/cli/docker/init/ Next steps Now that you have created a Dockerfile and learned the basics it s time to learn about building tagging and pushing the images. button text Build tag and publish the Image url build-tag-and-publish-an-image FILE: ./raw content get-started docker-concepts building-images index.md About this series Learn how to build production-ready images that are lean and efficient Docker images essential for minimizing overhead and enhancing deployment in production environments
+What you ll learn Understanding image layers Writing a Dockerfile Build tag and publish an image Using the build cache Multi-stage builds FILE: ./raw content get-started docker-concepts running-containers multi-container-applications.md youtube-embed 1jUwR6F9hvM Explanation Starting up a single-container application is easy
+For example a Python script that performs a specific data processing task runs within a container with all its dependencies
+Similarly a Node.js application serving a static website with a small API endpoint can be effectively containerized with all its necessary libraries and dependencies
+However as applications grow in size managing them as individual containers becomes more difficult
+Imagine the data processing Python script needs to connect to a database
+Suddenly you re now managing not just the script but also a database server within the same container
+If the script requires user logins you ll need an authentication mechanism further bloating the container size
+One best practice for containers is that each container should do one thing and do it well
+While there are exceptions to this rule avoid the tendency to have one container do multiple things
+Now you might ask Do I need to run these containers separately
+If I run them separately how shall I connect them all together
+While CODE224 is a convenient tool for launching containers it becomes difficult to manage a growing application stack with it
+Here s why: Imagine running several CODE225 commands frontend backend and database with different configurations for development testing and production environments
+It s error-prone and time-consuming
+Applications often rely on each other
+Manually starting containers in a specific order and managing network connections become difficult as the stack expands
+Each application needs its CODE226 command making it difficult to scale individual services
+Scaling the entire application means potentially wasting resources on components that don t need a boost
+Persisting data for each application requires separate volume mounts or configurations within each CODE227 command
+This creates a scattered data management approach
+Setting environment variables for each application through separate CODE228 commands is tedious and error-prone
+That s where Docker Compose comes to the rescue
+Docker Compose defines your entire multi-container application in a single YAML file called CODE229 
+This file specifies configurations for all your containers their dependencies environment variables and even volumes and networks
+With Docker Compose: You don t need to run multiple CODE230 commands
+All you need to do is define your entire multi-container application in a single YAML file
+This centralizes configuration and simplifies management
+You can run containers in a specific order and manage network connections easily
+You can simply scale individual services up or down within the multi-container setup
+This allows for efficient allocation based on real-time needs
+You can implement persistent volumes with ease
+It s easy to set environment variables once in your Docker Compose file
+By leveraging Docker Compose for running multi-container setups you can build complex applications with modularity scalability and consistency at their core
+Try it out In this hands-on guide you ll first see how to build and run a counter web application based on Node.js an Nginx reverse proxy and a Redis database using the CODE231 commands
+You ll also see how you can simplify the entire deployment process using Docker Compose
+Set up Get the sample application
+If you have Git you can clone the repository for the sample application
+Otherwise you can download the sample application
+Choose one of the following options. tabs tab name Clone with git Use the following command in a terminal to clone the sample application repository
+CODE232 Navigate into the CODE233 directory: CODE234 Inside this directory you ll find two sub-directories - CODE235 and CODE236 . /tab tab name Download Download the source and extract it. button url https://github.com/dockersamples/nginx-node-redis/archive/refs/heads/main.zip text Download the source Navigate into the CODE237 directory: CODE238 Inside this directory you ll find two sub-directories - CODE239 and CODE240 . /tab /tabs Download and install /get-started/get-docker.md Docker Desktop
+Build the images Navigate into the CODE241 directory to build the image by running the following command: CODE242 Navigate into the CODE243 directory and run the following command to build the first web image: CODE244 Run the containers Before you can run a multi-container application you need to create a network for them all to communicate through
+You can do so using the CODE245 command: CODE246 Start the Redis container by running the following command which will attach it to the previously created network and create a network alias useful for DNS lookups : CODE247 Start the first web container by running the following command: CODE248 Start the second web container by running the following: CODE249 Start the Nginx container by running the following command: CODE250 !NOTE Nginx is typically used as a reverse proxy for web applications routing traffic to backend servers
+In this case it routes to the Node.js backend containers web1 or web2 
+Verify the containers are up by running the following command: CODE251 You will see output like the following: CODE252 If you look at the Docker Desktop Dashboard you can see the containers and dive deeper into their configuration. 
+A screenshot of the Docker Desktop Dashboard showing multi-container applications images/multi-container-apps.webp?w 5000 border true With everything up and running you can open http://localhost http://localhost in your browser to see the site
+Refresh the page several times to see the host that s handling the request and the total number of requests: CODE253 !NOTE You might have noticed that Nginx acting as a reverse proxy likely distributes incoming requests in a round-robin fashion between the two backend containers
+This means each request might be directed to a different container web1 and web2 on a rotating basis
+The output shows consecutive increments for both the web1 and web2 containers and the actual counter value stored in Redis is updated only after the response is sent back to the client
+You can use the Docker Desktop Dashboard to remove the containers by selecting the containers and selecting the Delete button. 
+A screenshot of Docker Desktop Dashboard showing how to delete the multi-container applications images/delete-multi-container-apps.webp?border true Simplify the deployment using Docker Compose Docker Compose provides a structured and streamlined approach for managing multi-container deployments
+As stated earlier with Docker Compose you don t need to run multiple CODE254 commands
+All you need to do is define your entire multi-container application in a single YAML file called CODE255 
+Let s see how it works
+Navigate to the root of the project directory
+Inside this directory you ll find a file named CODE256 
+This YAML file is where all the magic happens
+It defines all the services that make up your application along with their configurations
+Each service specifies its image ports volumes networks and any other settings necessary for its functionality
+Use the CODE257 command to start the application: CODE258 When you run this command you should see output similar to the following: CODE259 If you look at the Docker Desktop Dashboard you can see the containers and dive deeper into their configuration. 
+A screenshot of the Docker Desktop Dashboard showing the containers of the application stack deployed using Docker Compose images/list-containers.webp?border true Alternatively you can use the Docker Desktop Dashboard to remove the containers by selecting the application stack and selecting the Delete button. 
+A screenshot of Docker Desktop Dashboard that shows how to remove the containers that you deployed using Docker Compose images/delete-containers.webp?border true In this guide you learned how easy it is to use Docker Compose to start and stop a multi-container application compared to CODE260 which is error-prone and difficult to manage
+Additional resources CODE261 CLI reference reference/cli/docker/container/run/ What is Docker Compose /get-started/docker-concepts/the-basics/what-is-docker-compose/ FILE: ./raw content get-started docker-concepts running-containers overriding-container-defaults.md youtube-embed PFszWK3BB8I Explanation When a Docker container starts it executes an application or command
+The container gets this executable script or file from its image s configuration
+Containers come with default settings that usually work well but you can change them if needed
+These adjustments help the container s program run exactly how you want it to
+For example if you have an existing database container that listens on the standard port and you want to run a new instance of the same database container then you might want to change the port settings the new container listens on so that it doesn t conflict with the existing container
+Sometimes you might want to increase the memory available to the container if the program needs more resources to handle a heavy workload or set the environment variables to provide specific configuration details the program needs to function properly
+The CODE262 command offers a powerful way to override these defaults and tailor the container s behavior to your liking
+The command offers several flags that let you to customize container behavior on the fly
+Here s a few ways you can achieve this
+Overriding the network ports Sometimes you might want to use separate database instances for development and testing purposes
+Running these database instances on the same port might conflict
+You can use the CODE263 option in CODE264 to map container ports to host ports allowing you to run the multiple instances of the container without any conflict
+CODE265 Setting environment variables This option sets an environment variable CODE266 inside the container with the value CODE267 
+CODE268 You will see output like the following: CODE269 !TIP The CODE270 file acts as a convenient way to set environment variables for your Docker containers without cluttering your command line with numerous CODE271 flags
+To use a CODE272 file you can pass CODE273 option with the CODE274 command
+CODE275 Restricting the container to consume the resources You can use the CODE276 and CODE277 flags with the CODE278 command to restrict how much CPU and memory a container can use
+For example you can set a memory limit for the Python API container preventing it from consuming excessive resources on your host
+Here s the command: CODE279 This command limits container memory usage to 512 MB and defines the CPU quota of 0.5 for half a core
+Monitor the real-time resource usage You can use the CODE280 command to monitor the real-time resource usage of running containers
+This helps you understand whether the allocated resources are sufficient or need adjustment
+By effectively using these CODE281 flags you can tailor your containerized application s behavior to fit your specific requirements
+Try it out In this hands-on guide you ll see how to use the CODE282 command to override the container defaults
+Download and install /get-started/get-docker/ Docker Desktop
+Run multiple instances of the Postgres database Start a container using the Postgres image https://hub.docker.com/ /postgres with the following command: CODE283 This will start the Postgres database in the background listening on the standard container port CODE284 and mapped to port CODE285 on the host machine
+Start a second Postgres container mapped to a different port
+CODE286 This will start another Postgres container in the background listening on the standard postgres port CODE287 in the container but mapped to port CODE288 on the host machine
+You override the host port just to ensure that this new container doesn t conflict with the existing running container
+Verify that both containers are running by going to the Containers view in the Docker Desktop Dashboard. 
+A screenshot of the Docker Desktop Dashboard showing the running instances of Postgres containers images/running-postgres-containers.webp?border true Run Postgres container in a controlled network By default containers automatically connect to a special network called a bridge network when you run them
+This bridge network acts like a virtual bridge allowing containers on the same host to communicate with each other while keeping them isolated from the outside world and other hosts
+It s a convenient starting point for most container interactions
+However for specific scenarios you might want more control over the network configuration
+Here s where the custom network comes in
+You create a custom network by passing CODE289 flag with the CODE290 command
+All containers without a CODE291 flag are attached to the default bridge network
+Follow the steps to see how to connect a Postgres container to a custom network
+Create a new custom network by using the following command: CODE292 Verify the network by running the following command: CODE293 This command lists all networks including the newly created mynetwork 
+Connect Postgres to the custom network by using the following command: CODE294 This will start Postgres container in the background mapped to the host port 5434 and attached to the CODE295 network
+You passed the CODE296 parameter to override the container default by connecting the container to custom Docker network for better isolation and communication with other containers
+You can use CODE297 command to see if the container is tied to this new bridge network
+Key difference between default bridge and custom networks DNS resolution: By default containers connected to the default bridge network can communicate with each other but only by IP address. unless you use CODE298 option which is considered legacy 
+It is not recommended for production use due to the various technical shortcomings /engine/network/drivers/bridge/ differences-between-user-defined-bridges-and-the-default-bridge 
+On a custom network containers can resolve each other by name or alias
+Isolation: All containers without a CODE299 specified are attached to the default bridge network hence can be a risk as unrelated containers are then able to communicate
+Using a custom network provides a scoped network in which only containers attached to that network are able to communicate hence providing better isolation
+Manage the resources By default containers are not limited in their resource usage
+However on shared systems it s crucial to manage resources effectively
+It s important not to let a running container consume too much of the host machine s memory
+This is where the CODE300 command shines again
+It offers flags like CODE301 and CODE302 to restrict how much CPU and memory a container can use
+CODE303 The CODE304 flag specifies the CPU quota for the container
+Here it s set to half a CPU core 0.5 whereas the CODE305 flag specifies the memory limit for the container
+In this case it s set to 512 MB
+Override the default CMD and ENTRYPOINT in Docker Compose Sometimes you might need to override the default commands CODE306 or entry points CODE307 defined in a Docker image especially when using Docker Compose
+Create a CODE308 file with the following content: CODE309 The Compose file defines a service named CODE310 that uses the official Postgres image sets an entrypoint script and starts the container with password authentication
+Bring up the service by running the following command: CODE311 This command starts the Postgres service defined in the Docker Compose file
+Verify the authentication with Docker Desktop Dashboard
+Open the Docker Desktop Dashboard select the Postgres container and select Exec to enter into the container shell
+You can type the following command to connect to the Postgres database: CODE312 
+A screenshot of the Docker Desktop Dashboard selecting the Postgres container and entering into its shell using EXEC button images/exec-into-postgres-container.webp?border true !NOTE The PostgreSQL image sets up trust authentication locally so you may notice a password isn t required when connecting from localhost inside the same container 
+However a password will be required if connecting from a different host/container
+Override the default CMD and ENTRYPOINT with CODE313 You can also override defaults directly using the CODE314 command with the following command: CODE315 This command runs a Postgres container sets an environment variable for password authentication overrides the default startup commands and configures hostname and port mapping
+Additional resources Ways to set environment variables with Compose /compose/how-tos/environment-variables/set-environment-variables/ What is a container /get-started/docker-concepts/the-basics/what-is-a-container/ Next steps Now that you have learned about overriding container defaults it s time to learn how to persist container data. button text Persisting container data url persisting-container-data FILE: ./raw content get-started docker-concepts running-containers persisting-container-data.md youtube-embed 10 2BjqB Ls Explanation When a container starts it uses the files and configuration provided by the image
+Each container is able to create modify and delete files and does so without affecting any other containers
+When the container is deleted these file changes are also deleted
+While this ephemeral nature of containers is great it poses a challenge when you want to persist the data
+For example if you restart a database container you might not want to start with an empty database
+So how do you persist files
+Container volumes Volumes are a storage mechanism that provide the ability to persist data beyond the lifecycle of an individual container
+Think of it like providing a shortcut or symlink from inside the container to outside the container
+As an example imagine you create a volume named CODE316 
+CODE317 When starting a container with the following command the volume will be mounted or attached into the container at CODE318 : CODE319 If the volume CODE320 doesn t exist Docker will automatically create it for you
+When the container runs all files it writes into the CODE321 folder will be saved in this volume outside of the container
+If you delete the container and start a new container using the same volume the files will still be there
+Sharing files using volumes You can attach the same volume to multiple containers to share files between containers
+This might be helpful in scenarios such as log aggregation data pipelines or other event-driven applications
+Managing volumes Volumes have their own lifecycle beyond that of containers and can grow quite large depending on the type of data and applications you re using
+The following commands will be helpful to manage volumes: CODE322 - list all volumes CODE323 - remove a volume only works when the volume is not attached to any containers CODE324 - remove all unused unattached volumes Try it out In this guide you ll practice creating and using volumes to persist data created by a Postgres container
+When the database runs it stores files into the CODE325 directory
+By attaching the volume here you will be able to restart the container multiple times while keeping the data
+Use volumes Download and install /get-started/get-docker/ Docker Desktop
+Start a container using the Postgres image https://hub.docker.com/ /postgres with the following command: CODE326 This will start the database in the background configure it with a password and attach a volume to the directory PostgreSQL will persist the database files
+Connect to the database by using the following command: CODE327 In the PostgreSQL command line run the following to create a database table and insert two records: CODE328 Verify the data is in the database by running the following in the PostgreSQL command line: CODE329 You should get output that looks like the following: CODE330 Exit out of the PostgreSQL shell by running the following command: CODE331 Stop and remove the database container
+Remember that even though the container has been deleted the data is persisted in the CODE332 volume
+CODE333 Start a new container by running the following command attaching the same volume with the persisted data: CODE334 You might have noticed that the CODE335 environment variable has been omitted
+That s because that variable is only used when bootstrapping a new database
+Verify the database still has the records by running the following command: CODE336 View volume contents The Docker Desktop Dashboard provides the ability to view the contents of any volume as well as the ability to export import and clone volumes
+Open the Docker Desktop Dashboard and navigate to the Volumes view
+In this view you should see the postgres data volume
+Select the postgres data volume s name
+The Data tab shows the contents of the volume and provides the ability to navigate the files
+Double-clicking on a file will let you see the contents and make changes
+Right-click on any file to save it or delete it
+Remove volumes Before removing a volume it must not be attached to any containers
+If you haven t removed the previous container do so with the following command the CODE337 will stop the container first and then remove it : CODE338 There are a few methods to remove volumes including the following: Select the Delete Volume option on a volume in the Docker Desktop Dashboard
+Use the CODE339 command: CODE340 Use the CODE341 command to remove all unused volumes: CODE342 Additional resources The following resources will help you learn more about volumes: Manage data in Docker /engine/storage Volumes /engine/storage/volumes Volume mounts /engine/containers/run/ volume-mounts Next steps Now that you have learned about persisting container data it s time to learn about sharing local files with containers. button text Sharing local files with containers url sharing-local-files FILE: ./raw content get-started docker-concepts running-containers publishing-ports.md youtube-embed 9JnqOmJ96ds Explanation If you ve been following the guides so far you understand that containers provide isolated processes for each component of your application
+Each component - a React frontend a Python API and a Postgres database - runs in its own sandbox environment completely isolated from everything else on your host machine
+This isolation is great for security and managing dependencies but it also means you can t access them directly
+For example you can t access the web app in your browser
+That s where port publishing comes in
+Publishing ports Publishing a port provides the ability to break through a little bit of networking isolation by setting up a forwarding rule
+As an example you can indicate that requests on your host s port CODE343 should be forwarded to the container s port CODE344 
+Publishing ports happens during container creation using the CODE345 or CODE346 flag with CODE347 
+The syntax is: CODE348 CODE349 : The port number on your host machine where you want to receive traffic CODE350 : The port number within the container that s listening for connections For example to publish the container s port CODE351 to host port CODE352 : CODE353 Now any traffic sent to port CODE354 on your host machine will be forwarded to port CODE355 within the container. !IMPORTANT When a port is published it s published to all network interfaces by default
+This means any traffic that reaches your machine can access the published application
+Be mindful of publishing databases or any sensitive information
+Learn more about published ports here /engine/network/ published-ports 
+Publishing to ephemeral ports At times you may want to simply publish the port but don t care which host port is used
+In these cases you can let Docker pick the port for you
+To do so simply omit the CODE356 configuration
+For example the following command will publish the container s port CODE357 onto an ephemeral port on the host: CODE358 Once the container is running using CODE359 will show you the port that was chosen: CODE360 In this example the app is exposed on the host at port CODE361 
+Publishing all ports When creating a container image the CODE362 instruction is used to indicate the packaged application will use the specified port
+These ports aren t published by default
+With the CODE363 or CODE364 flag you can automatically publish all exposed ports to ephemeral ports
+This is quite useful when you re trying to avoid port conflicts in development or testing environments
+For example the following command will publish all of the exposed ports configured by the image: CODE365 Try it out In this hands-on guide you ll learn how to publish container ports using both the CLI and Docker Compose for deploying a web application
+Use the Docker CLI In this step you will run a container and publish its port using the Docker CLI
+Download and install /get-started/get-docker/ Docker Desktop
+In a terminal run the following command to start a new container: CODE366 The first CODE367 refers to the host port
+This is the port on your local machine that will be used to access the application running inside the container
+The second CODE368 refers to the container port
+This is the port that the application inside the container listens on for incoming connections
+Hence the command binds to port CODE369 of the host to port CODE370 on the container system
+Verify the published port by going to the Containers view of the Docker Desktop Dashboard. 
+A screenshot of Docker Desktop Dashboard showing the published port images/published-ports.webp?w 5000 border true Open the website by either selecting the link in the Port s column of your container or visiting http://localhost:8080 http://localhost:8080 in your browser. 
+A screenshot of the landing page of the Nginx web server running in a container /get-started/docker-concepts/the-basics/images/access-the-frontend.webp?border true Use Docker Compose This example will launch the same application using Docker Compose: Create a new directory and inside that directory create a CODE371 file with the following contents: CODE372 The CODE373 configuration accepts a few different forms of syntax for the port definition
+In this case you re using the same CODE374 used in the CODE375 command
+Open a terminal and navigate to the directory you created in the previous step
+Use the CODE376 command to start the application
+Open your browser to http://localhost:8080 http://localhost:8080 
+Additional resources If you d like to dive in deeper on this topic be sure to check out the following resources: CODE377 CLI reference /reference/cli/docker/container/port/ Published ports /engine/network/ published-ports Next steps Now that you understand how to publish and expose ports you re ready to learn how to override the container defaults using the CODE378 command. button text Overriding container defaults url overriding-container-defaults FILE: ./raw content get-started docker-concepts running-containers sharing-local-files.md youtube-embed 2dAzsVg3Dek Explanation Each container has everything it needs to function with no reliance on any pre-installed dependencies on the host machine
+Since containers run in isolation they have minimal influence on the host and other containers
+This isolation has a major benefit: containers minimize conflicts with the host system and other containers
+However this isolation also means containers can t directly access data on the host machine by default
+Consider a scenario where you have a web application container that requires access to configuration settings stored in a file on your host system
+This file may contain sensitive data such as database credentials or API keys
+Storing such sensitive information directly within the container image poses security risks especially during image sharing
+To address this challenge Docker offers storage options that bridge the gap between container isolation and your host machine s data
+Docker offers two primary storage options for persisting data and sharing files between the host machine and containers: volumes and bind mounts
+Volume versus bind mounts If you want to ensure that data generated or modified inside the container persists even after the container stops running you would opt for a volume
+See Persisting container data /get-started/docker-concepts/running-containers/persisting-container-data/ to learn more about volumes and their use cases
+If you have specific files or directories on your host system that you want to directly share with your container like configuration files or development code then you would use a bind mount
+It s like opening a direct portal between your host and container for sharing
+Bind mounts are ideal for development environments where real-time file access and sharing between the host and container are crucial
+Sharing files between a host and container Both CODE379 or CODE380 and CODE381 flags used with the CODE382 command let you share files or directories between your local machine host and a Docker container
+However there are some key differences in their behavior and usage
+The CODE383 flag is simpler and more convenient for basic volume or bind mount operations
+If the host location doesn t exist when using CODE384 or CODE385 a directory will be automatically created
+Imagine you re a developer working on a project
+You have a source directory on your development machine where your code resides
+When you compile or build your code the generated artifacts compiled code executables images etc. are saved in a separate subdirectory within your source directory
+In the following examples this subdirectory is CODE386 
+Now you want these build artifacts to be accessible within a Docker container running your application
+Additionally you want the container to automatically access the latest build artifacts whenever you rebuild your code
+Here s a way to use CODE387 to start a container using a bind mount and map it to the container file location
+CODE388 The CODE389 flag offers more advanced features and granular control making it suitable for complex mount scenarios or production deployments
+If you use CODE390 to bind-mount a file or directory that doesn t yet exist on the Docker host the CODE391 command doesn t automatically create it for you but generates an error
+CODE392 !NOTE Docker recommends using the CODE393 syntax instead of CODE394 
+It provides better control over the mounting process and avoids potential issues with missing directories
+File permissions for Docker access to host files When using bind mounts it s crucial to ensure that Docker has the necessary permissions to access the host directory
+To grant read/write access you can use the CODE395 flag read-only or CODE396 read-write with the CODE397 or CODE398 flag during container creation
+For example the following command grants read-write access permission
+CODE399 Read-only bind mounts let the container access the mounted files on the host for reading but it can t change or delete the files
+With read-write bind mounts containers can modify or delete mounted files and these changes or deletions will also be reflected on the host system
+Read-only bind mounts ensures that files on the host can t be accidentally modified or deleted by a container
+Synchronized File Share As your codebase grows larger traditional methods of file sharing like bind mounts may become inefficient or slow especially in development environments where frequent access to files is necessary
+Synchronized file shares /manuals/desktop/features/synchronized-file-sharing.md improve bind mount performance by leveraging synchronized filesystem caches
+This optimization ensures that file access between the host and virtual machine VM is fast and efficient
+Try it out In this hands-on guide you ll practice how to create and use a bind mount to share files between a host and a container
+Run a container Download and install /get-started/get-docker/ Docker Desktop
+Start a container using the httpd https://hub.docker.com/ /httpd image with the following command: CODE400 This will start the CODE401 service in the background and publish the webpage to port CODE402 on the host
+Open the browser and access http://localhost:8080 http://localhost:8080 or use the curl command to verify if it s working fine or not
+CODE403 Use a bind mount Using a bind mount you can map the configuration file on your host computer to a specific location within the container
+In this example you ll see how to change the look and feel of the webpage by using bind mount: Delete the existing container by using the Docker Desktop Dashboard: 
+A screenshot of Docker Desktop Dashboard showing how to delete the httpd container images/delete-httpd-container.webp?border true Create a new directory called CODE404 on your host system
+CODE405 Navigate into the newly created directory CODE406 and create a file called CODE407 with the following content
+This is a basic HTML document that creates a simple webpage that welcomes you with a friendly whale
+CODE408 It s time to run the container
+The CODE409 and CODE410 examples produce the same result
+You can t run them both unless you remove the CODE411 container after running the first one. tabs tab name CODE412 CODE413 /tab tab name CODE414 CODE415 /tab /tabs !TIP When using the CODE416 or CODE417 flag in Windows PowerShell you need to provide the absolute path to your directory instead of just CODE418 
+This is because PowerShell handles relative paths differently from bash commonly used in Mac and Linux environments 
+With everything now up and running you should be able to access the site via http://localhost:8080 http://localhost:8080 and find a new webpage that welcomes you with a friendly whale
+Access the file on the Docker Desktop Dashboard You can view the mounted files inside a container by selecting the container s Files tab and then selecting a file inside the CODE419 directory
+Then select Open file editor . 
+A screenshot of Docker Desktop Dashboard showing the mounted files inside the a container images/mounted-files.webp?border true Delete the file on the host and verify the file is also deleted in the container
+You will find that the files no longer exist under Files in the Docker Desktop Dashboard. 
+A screenshot of Docker Desktop Dashboard showing the deleted files inside the a container images/deleted-files.webp?border true Recreate the HTML file on the host system and see that file re-appears under the Files tab under Containers on the Docker Desktop Dashboard
+By now you will be able to access the site too
+Stop your container The container continues to run until you stop it
+Go to the Containers view in the Docker Desktop Dashboard
+Locate the container you d like to stop
+Select the Stop action in the Actions column
+Additional resources The following resources will help you learn more about bind mounts: Manage data in Docker /storage/ Volumes /storage/volumes/ Bind mounts /storage/bind-mounts/ Running containers /reference/run/ Troubleshoot storage errors /storage/troubleshooting volume errors/ Persisting container data /get-started/docker-concepts/running-containers/persisting-container-data/ Next steps Now that you have learned about sharing local files with containers it s time to learn about multi-container applications. button text Multi-container applications url Multi-container applications FILE: ./raw content get-started docker-concepts running-containers index.md FILE: ./raw content get-started docker-concepts the-basics what-is-a-container.md youtube-embed W1kWqFkiu7k Explanation Imagine you re developing a killer web app that has three main components - a React frontend a Python API and a PostgreSQL database
+If you wanted to work on this project you d have to install Node Python and PostgreSQL
+How do you make sure you have the same versions as the other developers on your team
+Or your CI/CD system
+Or what s used in production
+How do you ensure the version of Python or Node or the database your app needs isn t affected by what s already on your machine
+How do you manage potential conflicts
+Enter containers
+What is a container
+Simply put containers are isolated processes for each of your app s components
+Each component - the frontend React app the Python API engine and the database - runs in its own isolated environment completely isolated from everything else on your machine
+Here s what makes them awesome
+Containers are: Self-contained
+Each container has everything it needs to function with no reliance on any pre-installed dependencies on the host machine
+Isolated
+Since containers are run in isolation they have minimal influence on the host and other containers increasing the security of your applications
+Independent
+Each container is independently managed
+Deleting one container won t affect any others
+Portable
+Containers can run anywhere
+The container that runs on your development machine will work the same way in a data center or anywhere in the cloud
+Containers versus virtual machines VMs Without getting too deep a VM is an entire operating system with its own kernel hardware drivers programs and applications
+Spinning up a VM only to isolate a single application is a lot of overhead
+A container is simply an isolated process with all of the files it needs to run
+If you run multiple containers they all share the same kernel allowing you to run more applications on less infrastructure
+Using VMs and containers together Quite often you will see containers and VMs used together
+As an example in a cloud environment the provisioned machines are typically VMs
+However instead of provisioning one machine to run one application a VM with a container runtime can run multiple containerized applications increasing resource utilization and reducing costs
+Try it out In this hands-on you will see how to run a Docker container using the Docker Desktop GUI. tabs group concept-usage persist true tab name Using the GUI Use the following instructions to run a container
+Open Docker Desktop and select the Search field on the top navigation bar
+Specify CODE420 in the search input and then select the Pull button. 
+A screenshot of the Docker Desktop Dashboard showing the search result for welcome-to-docker Docker image images/search-the-docker-image.webp?border true w 1000 h 700 Once the image is successfully pulled select the Run button
+Expand the Optional settings 
+In the Container name specify CODE421 
+In the Host port specify CODE422 . 
+A screenshot of Docker Desktop Dashboard showing the container run dialog with welcome-to-docker typed in as the container name and 8080 specified as the port number images/run-a-new-container.webp?border true w 550 h 400 Select Run to start your container
+Congratulations
+You just ran your first container
+View your container You can view all of your containers by going to the Containers view of the Docker Desktop Dashboard. 
+Screenshot of the container view of the Docker Desktop GUI showing the welcome-to-docker container running on the host port 8080 images/view-your-containers.webp?border true w 750 h 600 This container runs a web server that displays a simple website
+When working with more complex projects you ll run different parts in different containers
+For example you might run a different container for the frontend backend and database
+Access the frontend When you launched the container you exposed one of the container s ports onto your machine
+Think of this as creating configuration to let you to connect through the isolated environment of the container
+For this container the frontend is accessible on port CODE423 
+To open the website select the link in the Port s column of your container or visit http://localhost:8080 http://localhost:8080 in your browser. 
+Screenshot of the landing page coming from the running container images/access-the-frontend.webp?border Explore your container Docker Desktop lets you explore and interact with different aspects of your container
+Try it out yourself
+Go to the Containers view in the Docker Desktop Dashboard
+Select your container
+Select the Files tab to explore your container s isolated file system. 
+Screenshot of the Docker Desktop Dashboard showing the files and directories inside a running container images/explore-your-container.webp?border Stop your container The CODE424 container continues to run until you stop it
+Go to the Containers view in the Docker Desktop Dashboard
+Locate the container you d like to stop
+Select the Stop action in the Actions column. 
+Screenshot of the Docker Desktop Dashboard with the welcome container selected and being prepared to stop images/stop-your-container.webp?border /tab tab name Using the CLI Follow the instructions to run a container using the CLI: Open your CLI terminal and start a container by using the CODE425 /reference/cli/docker/container/run/ command: CODE426 The output from this command is the full container ID
+Congratulations
+You just fired up your first container
+View your running containers You can verify if the container is up and running by using the CODE427 /reference/cli/docker/container/ls/ command: CODE428 You will see output like the following: CODE429 This container runs a web server that displays a simple website
+When working with more complex projects you ll run different parts in different containers
+For example a different container for the CODE430 CODE431 and CODE432 . !TIP The CODE433 command will show you only running containers
+To view stopped containers add the CODE434 flag to list all containers: CODE435 Access the frontend When you launched the container you exposed one of the container s ports onto your machine
+Think of this as creating configuration to let you to connect through the isolated environment of the container
+For this container the frontend is accessible on port CODE436 
+To open the website select the link in the Port s column of your container or visit http://localhost:8080 http://localhost:8080 in your browser. 
+Screenshot of the landing page of the Nginx web server coming from the running container images/access-the-frontend.webp?border Stop your container The CODE437 container continues to run until you stop it
+You can stop a container using the CODE438 command
+Run CODE439 to get the ID of the container Provide the container ID or name to the CODE440 /reference/cli/docker/container/stop/ command: CODE441 !TIP When referencing containers by ID you don t need to provide the full ID
+You only need to provide enough of the ID to make it unique
+As an example the previous container could be stopped by running the following command: CODE442 /tab /tabs Additional resources The following links provide additional guidance into containers: Running a container /engine/containers/run/ Overview of container https://www.docker.com/resources/what-container/ Why Docker? https://www.docker.com/why-docker/ Next steps Now that you have learned the basics of a Docker container it s time to learn about Docker images. button text What is an image? url what-is-an-image FILE: ./raw content get-started docker-concepts the-basics what-is-a-registry.md youtube-embed 2WDl10Wv5rs Explanation Now that you know what a container image is and how it works you might wonder - where do you store these images
+Well you can store your container images on your computer system but what if you want to share them with your friends or use them on another machine
+That s where the image registry comes in
+An image registry is a centralized location for storing and sharing your container images
+It can be either public or private
+Docker Hub https://hub.docker.com is a public registry that anyone can use and is the default registry
+While Docker Hub is a popular option there are many other available container registries available today including Amazon Elastic Container Registry ECR https://aws.amazon.com/ecr/ Azure Container Registry ACR https://azure.microsoft.com/en-in/products/container-registry and Google Container Registry GCR https://cloud.google.com/artifact-registry 
+You can even run your private registry on your local system or inside your organization
+For example Harbor JFrog Artifactory GitLab Container registry etc
+Registry vs. repository While you re working with registries you might hear the terms registry and repository as if they re interchangeable
+Even though they re related they re not quite the same thing
+A registry is a centralized location that stores and manages container images whereas a repository is a collection of related container images within a registry
+Think of it as a folder where you organize your images based on projects
+Each repository contains one or more container images
+The following diagram shows the relationship between a registry repositories and images
+CODE443 !NOTE You can create one private repository and unlimited public repositories using the free version of Docker Hub
+For more information visit the Docker Hub subscription page https://www.docker.com/pricing/ 
+Try it out In this hands-on you will learn how to build and push a Docker image to the Docker Hub repository
+Sign up for a free Docker account If you haven t created one yet head over to the Docker Hub https://hub.docker.com page to sign up for a new Docker account. 
+Screenshot of the official Docker Hub page showing the Sign up page images/dockerhub-signup.webp?border You can use your Google or GitHub account to authenticate
+Create your first repository Sign in to Docker Hub https://hub.docker.com 
+Select the Create repository button in the top-right corner
+Select your namespace most likely your username and enter CODE444 as the repository name. 
+Screenshot of the Docker Hub page that shows how to create a public repository images/create-hub-repository.webp?border Set the visibility to Public 
+Select the Create button to create the repository
+That s it
+You ve successfully created your first repository
+This repository is empty right now
+You ll now fix this by pushing an image to it
+Sign in with Docker Desktop Download and install https://www.docker.com/products/docker-desktop/ Docker Desktop if not already installed
+In the Docker Desktop GUI select the Sign in button in the top-right corner Clone sample Node.js code In order to create an image you first need a project
+To get you started quickly you ll use a sample Node.js project found at github.com/dockersamples/helloworld-demo-node https://github.com/dockersamples/helloworld-demo-node 
+This repository contains a pre-built Dockerfile necessary for building a Docker image
+Don t worry about the specifics of the Dockerfile as you ll learn about that in later sections
+Clone the GitHub repository using the following command: CODE445 Navigate into the newly created directory
+CODE446 Run the following command to build a Docker image swapping out CODE447 with your username
+CODE448 !NOTE Make sure you include the dot . at the end of the CODE449 command
+This tells Docker where to find the Dockerfile
+Run the following command to list the newly created Docker image: CODE450 You will see output like the following: CODE451 Start a container to test the image by running the following command swap out the username with your own username : CODE452 You can verify if the container is working by visiting http://localhost:8080 http://localhost:8080 with your browser
+Use the CODE453 /reference/cli/docker/image/tag/ command to tag the Docker image
+Docker tags allow you to label and version your images
+CODE454 Finally it s time to push the newly built image to your Docker Hub repository by using the CODE455 /reference/cli/docker/image/push/ command: CODE456 Open Docker Hub https://hub.docker.com and navigate to your repository
+Navigate to the Tags section and see your newly pushed image. 
+Screenshot of the Docker Hub page that displays the newly added image tag images/dockerhub-tags.webp?border true In this walkthrough you signed up for a Docker account created your first Docker Hub repository and built tagged and pushed a container image to your Docker Hub repository
+Additional resources Docker Hub Quickstart /docker-hub/quickstart/ Manage Docker Hub Repositories /docker-hub/repos/ Next steps Now that you understand the basics of containers and images you re ready to learn about Docker Compose. button text What is Docker Compose? url what-is-Docker-Compose FILE: ./raw content get-started docker-concepts the-basics what-is-an-image.md youtube-embed NyvT9REqLe4 Explanation Seeing as a container ./what-is-a-container.md is an isolated process where does it get its files and configuration
+How do you share those environments
+That s where container images come in
+A container image is a standardized package that includes all of the files binaries libraries and configurations to run a container
+For a PostgreSQL https://hub.docker.com/ /postgres image that image will package the database binaries config files and other dependencies
+For a Python web app it ll include the Python runtime your app code and all of its dependencies
+There are two important principles of images: Images are immutable
+Once an image is created it can t be modified
+You can only make a new image or add changes on top of it
+Container images are composed of layers
+Each layer represents a set of file system changes that add remove or modify files
+These two principles let you to extend or add to existing images
+For example if you are building a Python app you can start from the Python image https://hub.docker.com/ /python and add additional layers to install your app s dependencies and add your code
+This lets you focus on your app rather than Python itself
+Finding images Docker Hub https://hub.docker.com is the default global marketplace for storing and distributing images
+It has over 100 000 images created by developers that you can run locally
+You can search for Docker Hub images and run them directly from Docker Desktop
+Docker Hub provides a variety of Docker-supported and endorsed images known as Docker Trusted Content
+These provide fully managed services or great starters for your own images
+These include: Docker Official Images https://hub.docker.com/search?q type image filter official - a curated set of Docker repositories serve as the starting point for the majority of users and are some of the most secure on Docker Hub Docker Verified Publishers https://hub.docker.com/search?q filter store - high-quality images from commercial publishers verified by Docker Docker-Sponsored Open Source https://hub.docker.com/search?q filter open source - images published and maintained by open-source projects sponsored by Docker through Docker s open source program For example Redis https://hub.docker.com/ /redis and Memcached https://hub.docker.com/ /memcached are a few popular ready-to-go Docker Official Images
+You can download these images and have these services up and running in a matter of seconds
+There are also base images like the Node.js https://hub.docker.com/ /node Docker image that you can use as a starting point and add your own files and configurations
+Try it out tabs group concept-usage persist true tab name Using the GUI In this hands-on you will learn how to search and pull a container image using the Docker Desktop GUI
+Search for and download an image Open the Docker Desktop Dashboard and select the Images view in the left-hand navigation menu. 
+A screenshot of the Docker Desktop Dashboard showing the image view on the left sidebar images/click-image.webp?border true w 1050 h 400 Select the Search images to run button
+If you don t see it select the global search bar at the top of the screen. 
+A screenshot of the Docker Desktop Dashboard showing the search ta images/search-image.webp?border In the Search field enter welcome-to-docker 
+Once the search has completed select the CODE457 image. 
+A screenshot of the Docker Desktop Dashboard showing the search results for the docker/welcome-to-docker image images/select-image.webp?border true w 1050 h 400 Select Pull to download the image
+Learn about the image Once you have an image downloaded you can learn quite a few details about the image either through the GUI or the CLI
+In the Docker Desktop Dashboard select the Images view
+Select the docker/welcome-to-docker image to open details about the image. 
+A screenshot of the Docker Desktop Dashboard showing the images view with an arrow pointing to the docker/welcome-to-docker image images/pulled-image.webp?border true w 1050 h 400 The image details page presents you with information regarding the layers of the image the packages and libraries installed in the image and any discovered vulnerabilities. 
+A screenshot of the image details view for the docker/welcome-to-docker image images/image-layers.webp?border true w 1050 h 400 /tab tab name Using the CLI Follow the instructions to search and pull a Docker image using CLI to view its layers
+Search for and download an image Open a terminal and search for images using the CODE458 /reference/cli/docker/search.md command: CODE459 You will see output like the following: CODE460 This output shows you information about relevant images available on Docker Hub
+Pull the image using the CODE461 /reference/cli/docker/image/pull.md command
+CODE462 You will see output like the following: CODE463 Each of line represents a different downloaded layer of the image
+Remember that each layer is a set of filesystem changes and provides functionality of the image
+Learn about the image List your downloaded images using the CODE464 /reference/cli/docker/image/ls.md command: CODE465 You will see output like the following: CODE466 The command shows a list of Docker images currently available on your system
+The CODE467 has a total size of approximately 29.7MB
+Image size The image size represented here reflects the uncompressed size of the image not the download size of the layers
+List the image s layers using the CODE468 /reference/cli/docker/image/history.md command: CODE469 You will see output like the following: CODE470 This output shows you all of the layers their sizes and the command used to create the layer
+Viewing the full command If you add the CODE471 flag to the command you will see the full command
+Note that since the output is in a table-like format longer commands will cause the output to be very difficult to navigate. /tab /tabs In this walkthrough you searched and pulled a Docker image
+In addition to pulling a Docker image you also learned about the layers of a Docker Image
+Additional resources The following resources will help you learn more about exploring finding and building images: Docker trusted content /manuals/docker-hub/image-library/trusted-content.md Explore the Image view in Docker Desktop /manuals/desktop/use-desktop/images.md Docker Build overview /manuals/build/concepts/overview.md Docker Hub https://hub.docker.com Next steps Now that you have learned the basics of images it s time to learn about distributing images through registries. button text What is a registry? url what-is-a-registry FILE: ./raw content get-started docker-concepts the-basics what-is-docker-compose.md youtube-embed xhcUIK4fGtY Explanation If you ve been following the guides so far you ve been working with single container applications
+But now you re wanting to do something more complicated - run databases message queues caches or a variety of other services
+Do you install everything in a single container
+Run multiple containers
+If you run multiple how do you connect them all together
+One best practice for containers is that each container should do one thing and do it well
+While there are exceptions to this rule avoid the tendency to have one container do multiple things
+You can use multiple CODE472 commands to start multiple containers
+But you ll soon realize you ll need to manage networks all of the flags needed to connect containers to those networks and more
+And when you re done cleanup is a little more complicated
+With Docker Compose you can define all of your containers and their configurations in a single YAML file
+If you include this file in your code repository anyone that clones your repository can get up and running with a single command
+It s important to understand that Compose is a declarative tool - you simply define it and go
+You don t always need to recreate everything from scratch
+If you make a change run CODE473 again and Compose will reconcile the changes in your file and apply them intelligently
+Dockerfile versus Compose file A Dockerfile provides instructions to build a container image while a Compose file defines your running containers
+Quite often a Compose file references a Dockerfile to build an image to use for a particular service
+Try it out In this hands-on you will learn how to use a Docker Compose to run a multi-container application
+You ll use a simple to-do list app built with Node.js and MySQL as a database server
+Start the application Follow the instructions to run the to-do list app on your system
+Download and install https://www.docker.com/products/docker-desktop/ Docker Desktop
+Open a terminal and clone this sample application https://github.com/dockersamples/todo-list-app 
+CODE474 Navigate into the CODE475 directory: CODE476 Inside this directory you ll find a file named CODE477 
+This YAML file is where all the magic happens
+It defines all the services that make up your application along with their configurations
+Each service specifies its image ports volumes networks and any other settings necessary for its functionality
+Take some time to explore the YAML file and familiarize yourself with its structure
+Use the CODE478 /reference/cli/docker/compose/up/ command to start the application: CODE479 When you run this command you should see an output like this: CODE480 A lot happened here
+A couple of things to call out: Two container images were downloaded from Docker Hub - node and MySQL A network was created for your application A volume was created to persist the database files between container restarts Two containers were started with all of their necessary config If this feels overwhelming don t worry
+You ll get there
+With everything now up and running you can open http://localhost:3000 http://localhost:3000 in your browser to see the site
+Feel free to add items to the list check them off and remove them. 
+A screenshot of a webpage showing the todo-list application running on port 3000 images/todo-list-app.webp?border true w 950 h 400 If you look at the Docker Desktop GUI you can see the containers and dive deeper into their configuration. 
+A screenshot of Docker Desktop dashboard showing the list of containers running todo-list app images/todo-list-containers.webp?border true w 950 h 400 Tear it down Since this application was started using Docker Compose it s easy to tear it all down when you re done
+In the CLI use the CODE481 /reference/cli/docker/compose/down/ command to remove everything: CODE482 You ll see output similar to the following: CODE483 Volume persistence By default volumes aren t automatically removed when you tear down a Compose stack
+The idea is that you might want the data back if you start the stack again
+If you do want to remove the volumes add the CODE484 flag when running the CODE485 command: CODE486 Alternatively you can use the Docker Desktop GUI to remove the containers by selecting the application stack and selecting the Delete button. 
+A screenshot of the Docker Desktop GUI showing the containers view with an arrow pointing to the Delete button images/todo-list-delete.webp?w 930 h 400 Using the GUI for Compose stacks Note that if you remove the containers for a Compose app in the GUI it s removing only the containers
+You ll have to manually remove the network and volumes if you want to do so
+In this walkthrough you learned how to use Docker Compose to start and stop a multi-container application
+Additional resources This page was a brief introduction to Compose
+In the following resources you can dive deeper into Compose and how to write Compose files
+Overview of Docker Compose /compose/ Overview of Docker Compose CLI /compose/reference/ How Compose works /compose/intro/compose-application-model/ FILE: ./raw content get-started docker-concepts the-basics index.md FILE: ./raw content get-started introduction build-and-push-first-image.md youtube-embed 7ge1s5nAa34 Explanation Now that you ve updated the to-do list app develop-with-containers.md you re ready to create a container image for the application and share it on Docker Hub
+To do so you will need to do the following: Sign in with your Docker account Create an image repository on Docker Hub Build the container image Push the image to Docker Hub Before you dive into the hands-on guide the following are a few core concepts that you should be aware of
+Container images If you re new to container images think of them as a standardized package that contains everything needed to run an application including its files configuration and dependencies
+These packages can then be distributed and shared with others
+Docker Hub To share your Docker images you need a place to store them
+This is where registries come in
+While there are many registries Docker Hub is the default and go-to registry for images
+Docker Hub provides both a place for you to store your own images and to find images from others to either run or use as the bases for your own images
+In Develop with containers develop-with-containers.md you used the following images that came from Docker Hub each of which are Docker Official Images /manuals/docker-hub/image-library/trusted-content.md docker-official-images : node https://hub.docker.com/ /node - provides a Node environment and is used as the base of your development efforts
+This image is also used as the base for the final application image. mysql https://hub.docker.com/ /mysql - provides a MySQL database to store the to-do list items phpmyadmin https://hub.docker.com/ /phpmyadmin - provides phpMyAdmin a web-based interface to the MySQL database traefik https://hub.docker.com/ /traefik - provides Traefik a modern HTTP reverse proxy and load balancer that routes requests to the appropriate container based on routing rules Explore the full catalog of Docker Official Images https://hub.docker.com/search?image filter official q Docker Verified Publishers https://hub.docker.com/search?q filter store and Docker Sponsored Open Source Software https://hub.docker.com/search?q filter open source images to see more of what there is to run and build on
+Try it out In this hands-on guide you ll learn how to sign in to Docker Hub and push images to Docker Hub repository
+Sign in with your Docker account To push images to Docker Hub you will need to sign in with a Docker account
+Open the Docker Dashboard
+Select Sign in at the top-right corner
+If needed create an account and then complete the sign-in flow
+Once you re done you should see the Sign in button turn into a profile picture
+Create an image repository Now that you have an account you can create an image repository
+Just as a Git repository holds source code an image repository stores container images
+Go to Docker Hub https://hub.docker.com 
+Select Create repository 
+On the Create repository page enter the following information: Repository name - CODE487 Short description - feel free to enter a description if you d like Visibility - select Public to allow others to pull your customized to-do app Select Create to create the repository
+Build and push the image Now that you have a repository you are ready to build and push your image
+An important note is that the image you are building extends the Node image meaning you don t need to install or configure Node yarn etc
+You can simply focus on what makes your application unique
+What is an image/Dockerfile
+Without going too deep yet think of a container image as a single package that contains everything needed to run a process
+In this case it will contain a Node environment the backend code and the compiled React code
+Any machine that runs a container using the image will then be able to run the application as it was built without needing anything else pre-installed on the machine
+A CODE488 is a text-based script that provides the instruction set on how to build the image
+For this quick start the repository already contains the Dockerfile. tabs group cli-or-vs-code persist true tab name CLI To get started either clone or download the project as a ZIP file https://github.com/docker/getting-started-todo-app/archive/refs/heads/main.zip to your local machine
+CODE489 And after the project is cloned navigate into the new directory created by the clone: CODE490 Build the project by running the following command swapping out CODE491 with your username
+CODE492 For example if your Docker username was CODE493 you would run the following: CODE494 To verify the image exists locally you can use the CODE495 command: CODE496 You will see output similar to the following: CODE497 To push the image use the CODE498 command
+Be sure to replace CODE499 with your username: CODE500 Depending on your upload speeds this may take a moment to push. /tab tab name VS Code Open Visual Studio Code
+Ensure you have the Docker extension for VS Code installed from Extension Marketplace https://marketplace.visualstudio.com/items?itemName ms-azuretools.vscode-docker . 
+Screenshot of VS code extension marketplace images/install-docker-extension.webp In the File menu select Open Folder 
+Choose Clone Git Repository and paste this URL: https://github.com/docker/getting-started-todo-app https://github.com/docker/getting-started-todo-app 
+Screenshot of VS code showing how to clone a repository images/clone-the-repo.webp?border true Right-click the CODE501 and select the Build Image... menu item. 
+Screenshot of VS Code showing the right-click menu and Build Image menu item images/build-vscode-menu-item.webp?border true In the dialog that appears enter a name of CODE502 replacing CODE503 with your Docker username
+After pressing Enter you ll see a terminal appear where the build will occur
+Once it s completed feel free to close the terminal
+Open the Docker Extension for VS Code by selecting the Docker logo in the left nav menu
+Find the image you created
+It ll have a name of CODE504 
+Expand the image to view the tags or different versions of the image
+You should see a tag named CODE505 which is the default tag given to an image
+Right-click on the latest item and select the Push... option. 
+Screenshot of the Docker Extension and the right-click menu to push an image images/build-vscode-push-image.webp Press Enter to confirm and then watch as your image is pushed to Docker Hub
+Depending on your upload speeds it might take a moment to push the image
+Once the upload is finished feel free to close the terminal. /tab /tabs Recap Before you move on take a moment and reflect on what happened here
+Within a few moments you were able to build a container image that packages your application and push it to Docker Hub
+Going forward you ll want to remember that: Docker Hub is the go-to registry for finding trusted content
+Docker provides a collection of trusted content composed of Docker Official Images Docker Verified Publishers and Docker Sponsored Open Source Software to use directly or as bases for your own images
+Docker Hub provides a marketplace to distribute your own applications
+Anyone can create an account and distribute images
+While you are publicly distributing the image you created private repositories can ensure your images are accessible to only authorized users
+Usage of other registries While Docker Hub is the default registry registries are standardized and made interoperable through the Open Container Initiative https://opencontainers.org/ 
+This allows companies and organizations to run their own private registries
+Quite often trusted content is mirrored or copied from Docker Hub into these private registries
+Next steps Now that you ve built an image it s time to discuss why you as a developer should learn more about Docker and how it will help you in your day-to-day tasks. button text What s Next url whats-next FILE: ./raw content get-started introduction develop-with-containers.md youtube-embed D0SDBrS3t9I Explanation Now that you have Docker Desktop installed you are ready to do some application development
+Specifically you will do the following: Clone and start a development project Make changes to the backend and frontend See the changes immediately Try it out In this hands-on guide you ll learn how to develop with containers
+Start the project To get started either clone or download the project as a ZIP file https://github.com/docker/getting-started-todo-app/archive/refs/heads/main.zip to your local machine
+CODE506 And after the project is cloned navigate into the new directory created by the clone: CODE507 Once you have the project start the development environment using Docker Compose
+To start the project using the CLI run the following command: CODE508 You will see an output that shows container images being pulled down containers starting and more
+Don t worry if you don t understand it all at this point
+But within a moment or two things should stabilize and finish
+Open your browser to http://localhost http://localhost to see the application up and running
+It may take a few minutes for the app to run
+The app is a simple to-do application so feel free to add an item or two mark some as done or even delete an item. 
+Screenshot of the getting started to-do app after its first launch images/develop-getting-started-app-first-launch.webp What s in the environment
+Now that the environment is up and running what s actually in it
+At a high-level there are several containers or processes that each serve a specific need for the application: React frontend - a Node container that s running the React dev server using Vite https://vitejs.dev/ 
+Node backend - the backend provides an API that provides the ability to retrieve create and delete to-do items
+MySQL database - a database to store the list of the items. phpMyAdmin - a web-based interface to interact with the database that is accessible at http://db.localhost http://db.localhost 
+Traefik proxy - Traefik https://traefik.io/traefik/ is an application proxy that routes requests to the right service
+It sends all requests for CODE509 to the backend requests for CODE510 to the frontend and then requests for CODE511 to phpMyAdmin
+This provides the ability to access all applications using port 80 instead of different ports for each service 
+With this environment you as the developer don t need to install or configure any services populate a database schema configure database credentials or anything
+You only need Docker Desktop
+The rest just works
+Make changes to the app With this environment up and running you re ready to make a few changes to the application and see how Docker helps provide a fast feedback loop
+Change the greeting The greeting at the top of the page is populated by an API call at CODE512 
+Currently it always returns Hello world! 
+You ll now modify it to return one of three randomized messages that you ll get to choose 
+Open the CODE513 file in a text editor
+This file provides the handler for the API endpoint
+Modify the variable at the top to an array of greetings
+Feel free to use the following modifications or customize it to your own liking
+Also update the endpoint to send a random greeting from this list
+CODE514 If you haven t done so yet save the file
+If you refresh your browser you should see a new greeting
+If you keep refreshing you should see all of the messages appear. 
+Screenshot of the to-do app with a new greeting images/develop-app-with-greetings.webp Change the placeholder text When you look at the app you ll see the placeholder text is simply New Item 
+You ll now make that a little more descriptive and fun
+You ll also make a few changes to the styling of the app too
+Open the CODE515 file
+This provides the component to add a new item to the to-do list
+Modify the CODE516 attribute of the CODE517 element to whatever you d like to display
+CODE518 Save the file and go back to your browser
+You should see the change already hot-reloaded into your browser
+If you don t like it feel free to tweak it until it looks just right. 
+Screenshot of the to-do app with an updated placeholder in the add item text field images/develop-app-with-updated-placeholder.webp Change the background color Before you consider the application finalized you need to make the colors better
+Open the CODE519 file
+Adjust the CODE520 attribute to any color you d like
+The provided snippet is a soft blue to go along with Docker s nautical theme
+If you re using an IDE you can pick a color using the integrated color pickers
+Otherwise feel free to use an online Color Picker https://www.w3schools.com/colors/colors picker.asp 
+CODE521 Each save should let you see the change immediately in the browser
+Keep adjusting it until it s the perfect setup for you. 
+Screenshot of the to-do app with a new placeholder and background color images/develop-app-with-updated-client.webp And with that you re done
+Congrats on updating your website
+Recap Before you move on take a moment and reflect on what happened here
+Within a few moments you were able to: Start a complete development project with zero installation effort
+The containerized environment provided the development environment ensuring you have everything you need
+You didn t have to install Node MySQL or any of the other dependencies directly on your machine
+All you needed was Docker Desktop and a code editor
+Make changes and see them immediately
+This was made possible because 1 the processes running in each container are watching and responding to file changes and 2 the files are shared with the containerized environment
+Docker Desktop enables all of this and so much more
+Once you start thinking with containers you can create almost any environment and easily share it with your team
+Next steps Now that the application has been updated you re ready to learn about packaging it as a container image and pushing it to a registry specifically Docker Hub. button text Build and push your first image url build-and-push-first-image FILE: ./raw content get-started introduction get-docker-desktop.md youtube-embed C2bPVhiNU-0 Explanation Docker Desktop is the all-in-one package to build images run containers and so much more
+This guide will walk you through the installation process enabling you to experience Docker Desktop firsthand
+Docker Desktop terms Commercial use of Docker Desktop in larger enterprises more than 250 employees OR more than 10 million USD in annual revenue requires a paid subscription https://www.docker.com/pricing/? gl 1 1nyypal ga MTYxMTUxMzkzOS4xNjgzNTM0MTcw ga XJWPQMJYHQ MTcxNjk4MzU4Mi4xMjE2LjEuMTcxNjk4MzkzNS4xNy4wLjA. . card title Docker Desktop for Mac description Download Apple Silicon https://desktop.docker.com/mac/main/arm64/Docker.dmg?utm source docker utm medium webreferral utm campaign docs-driven-download-mac-arm64 Download Intel https://desktop.docker.com/mac/main/amd64/Docker.dmg?utm source docker utm medium webreferral utm campaign docs-driven-download-mac-amd64 Install instructions /desktop/setup/install/mac-install icon /icons/AppleMac.svg card title Docker Desktop for Windows description Download https://desktop.docker.com/win/main/amd64/Docker 20Desktop 20Installer.exe?utm source docker utm medium webreferral utm campaign docs-driven-download-windows Install instructions /desktop/setup/install/windows-install icon /icons/Windows.svg card title Docker Desktop for Linux description Install instructions /desktop/setup/install/linux/ icon /icons/Linux.svg Once it s installed complete the setup process and you re all set to run a Docker container
+Try it out In this hands-on guide you will see how to run a Docker container using Docker Desktop
+Follow the instructions to run a container using the CLI
+Run your first container Open your CLI terminal and start a container by running the CODE522 command: CODE523 Access the frontend For this container the frontend is accessible on port CODE524 
+To open the website visit http://localhost:8080 http://localhost:8080 in your browser. 
+Screenshot of the landing page of the Nginx web server coming from the running container ../docker-concepts/the-basics/images/access-the-frontend.webp?border true Manage containers using Docker Desktop Open Docker Desktop and select the Containers field on the left sidebar
+You can view information about your container including logs and files and even access the shell by selecting the Exec tab. 
+Screenshot of exec into the running container in Docker Desktop images/exec-into-docker-container.webp?border true Select the Inspect field to obtain detailed information about the container
+You can perform various actions such as pause resume start or stop containers or explore the Logs Bind mounts Exec Files and Stats tabs. 
+Screenshot of inspecting the running container in Docker Desktop images/inspecting-container.webp?border true Docker Desktop simplifies container management for developers by streamlining the setup configuration and compatibility of applications across different environments thereby addressing the pain points of environment inconsistencies and deployment challenges
+What s next
+Now that you have Docker Desktop installed and ran your first container it s time to start developing with containers. button text Develop with containers url develop-with-containers FILE: ./raw content get-started introduction whats-next.md The following sections provide step-by-step guides to help you understand core Docker concepts building images and running containers
+The basics Get started learning the core concepts of containers images registries and Docker Compose. grid items the-basics Building images Craft optimized container images with Dockerfiles build cache and multi-stage builds. grid items building-images Running containers Master essential techniques for exposing ports overriding defaults persisting data sharing files and managing multi-container applications. grid items running-containers FILE: ./raw content get-started introduction index.md About this series In this guide series you will gain hands-on experience with Docker starting with installing and setting up Docker Desktop on your local machine
+You will learn how to run your first container understanding the basics of containerization and its benefits
+This series guides you through building your first Docker image providing insights into creating efficient and reusable images
+Finally you will explore how to publish your image on Docker Hub enabling you to share your work with the broader community and leverage Docker s powerful ecosystem for collaborative development and deployment
+What you ll learn Set up Docker Desktop Run your first container Build your first image Publish your image on Docker Hub FILE: ./raw content get-started workshop 02 our app.md For the rest of this guide you ll be working with a simple todo list manager that runs on Node.js
+If you re not familiar with Node.js don t worry
+This guide doesn t require any prior experience with JavaScript
+Prerequisites You have installed the latest version of Docker Desktop /get-started/get-docker.md 
+You have installed a Git client https://git-scm.com/downloads 
+You have an IDE or a text editor to edit files
+Docker recommends using Visual Studio Code https://code.visualstudio.com/ 
+Get the app Before you can run the application you need to get the application source code onto your machine
+Clone the getting-started-app repository https://github.com/docker/getting-started-app/tree/main using the following command: CODE525 View the contents of the cloned repository
+You should see the following files and sub-directories
+CODE526 Build the app s image To build the image you ll need to use a Dockerfile
+A Dockerfile is simply a text-based file with no file extension that contains a script of instructions
+Docker uses this script to build a container image
+In the CODE527 directory the same location as the CODE528 file create a file named CODE529 with the following contents: CODE530 This Dockerfile starts off with a CODE531 base image a light-weight Linux image that comes with Node.js and the Yarn package manager pre-installed
+It copies all of the source code into the image installs the necessary dependencies and starts the application
+Build the image using the following commands: In the terminal make sure you re in the CODE532 directory
+Replace CODE533 with the path to your CODE534 directory
+CODE535 Build the image
+CODE536 The CODE537 command uses the Dockerfile to build a new image
+You might have noticed that Docker downloaded a lot of layers 
+This is because you instructed the builder that you wanted to start from the CODE538 image
+But since you didn t have that on your machine Docker needed to download the image
+After Docker downloaded the image the instructions from the Dockerfile copied in your application and used CODE539 to install your application s dependencies
+The CODE540 directive specifies the default command to run when starting a container from this image
+Finally the CODE541 flag tags your image
+Think of this as a human-readable name for the final image
+Since you named the image CODE542 you can refer to that image when you run a container
+The CODE543 at the end of the CODE544 command tells Docker that it should look for the CODE545 in the current directory
+Start an app container Now that you have an image you can run the application in a container using the CODE546 command
+Run your container using the CODE547 command and specify the name of the image you just created: CODE548 The CODE549 flag short for CODE550 runs the container in the background
+This means that Docker starts your container and returns you to the terminal prompt
+Also it does not display logs in the terminal
+The CODE551 flag short for CODE552 creates a port mapping between the host and the container
+The CODE553 flag takes a string value in the format of CODE554 where CODE555 is the address on the host and CODE556 is the port on the container
+The command publishes the container s port 3000 to CODE557 CODE558 on the host
+Without the port mapping you wouldn t be able to access the application from the host
+After a few seconds open your web browser to http://localhost:3000 http://localhost:3000 
+You should see your app. 
+Empty todo list images/todo-list-empty.webp Add an item or two and see that it works as you expect
+You can mark items as complete and remove them
+Your frontend is successfully storing items in the backend
+At this point you have a running todo list manager with a few items
+If you take a quick look at your containers you should see at least one container running that s using the CODE559 image and on port CODE560 
+To see your containers you can use the CLI or Docker Desktop s graphical interface. tabs tab name CLI Run the CODE561 command in a terminal to list your containers
+CODE562 Output similar to the following should appear
+CODE563 /tab tab name Docker Desktop In Docker Desktop select the Containers tab to see a list of your containers. 
+Docker Desktop with get-started container running images/dashboard-two-containers.webp /tab /tabs Summary In this section you learned the basics about creating a Dockerfile to build an image
+Once you built an image you started a container and saw the running app
+Related information: Dockerfile reference /reference/dockerfile/ docker CLI reference /reference/cli/docker/ Next steps Next you re going to make a modification to your app and learn how to update your running application with a new image
+Along the way you ll learn a few other useful commands. button text Update the application url 03 updating app.md FILE: ./raw content get-started workshop 03 updating app.md In part 1 ./02 our app.md you containerized a todo application
+In this part you ll update the application and image
+You ll also learn how to stop and remove a container
+Update the source code In the following steps you ll change the empty text when you don t have any todo list items to You have no todo items yet
+Add one above
+In the CODE564 file update line 56 to use the new empty text
+CODE565 Build your updated version of the image using the CODE566 command
+CODE567 Start a new container using the updated code
+CODE568 You probably saw an error like this: CODE569 The error occurred because you aren t able to start the new container while your old container is still running
+The reason is that the old container is already using the host s port 3000 and only one process on the machine containers included can listen to a specific port
+To fix this you need to remove the old container
+Remove the old container To remove a container you first need to stop it
+Once it has stopped you can remove it
+You can remove the old container using the CLI or Docker Desktop s graphical interface
+Choose the option that you re most comfortable with. tabs tab name CLI Remove a container using the CLI Get the ID of the container by using the CODE570 command
+CODE571 Use the CODE572 command to stop the container
+Replace CODE573 docker ps CODE574 CODE575 CODE576 docker rm CODE577 CODE578 CODE579 force CODE580 docker rm CODE581 docker rm -f CODE582 docker run CODE583 CODE584 CODE585 getting-started CODE586 CODE587 CODE588 CODE589 CODE590 docker/getting started CODE591 getting-started CODE592 CODE593 CODE594 docker login YOUR-USER-NAME CODE595 docker tag CODE596 getting-started CODE597 YOUR-USER-NAME CODE598 CODE599 CODE600 docker push CODE601 tagname CODE602 latest CODE603 CODE604 CODE605 --platform CODE606 CODE607 CODE608 CODE609 CODE610 docker run CODE611 127.0.0.1:3000 CODE612 0.0.0.0 CODE613 127.0.0.1 CODE614 0.0.0.0 CODE615 3000 CODE616 CODE617 CODE618 alpine CODE619 touch greeting.txt CODE620 greeting.txt CODE621 stat CODE622 CODE623 CODE624 CODE625 CODE626 greeting.txt CODE627 /etc/todos/todo.db CODE628 todo.db CODE629 docker volume create CODE630 CODE631 CODE632 docker rm -f CODE633 --mount CODE634 /etc/todos CODE635 CODE636 CODE637 CODE638 CODE639 todo-db CODE640 getting-started CODE641 3000 CODE642 todo-db CODE643 /etc/todos CODE644 docker ps CODE645 docker rm -f CODE646 docker volume inspect CODE647 CODE648 CODE649 CODE650 CODE651 Mountpoint CODE652 --mount CODE653 type volume src my-volume target /usr/local/data CODE654 type bind src /path/to/data target /usr/local/data CODE655 getting-started-app CODE656 getting-started-app CODE657 bash CODE658 ubuntu CODE659 CODE660 CODE661 CODE662 CODE663 CODE664 CODE665 CODE666 CODE667 --mount type bind CODE668 src CODE669 getting-started-app CODE670 target CODE671 /src CODE672 bash CODE673 CODE674 CODE675 src CODE676 getting-started-app CODE677 CODE678 CODE679 myfile.txt CODE680 CODE681 CODE682 getting-started-app CODE683 myfile.txt CODE684 CODE685 CODE686 myfile.txt CODE687 app CODE688 CODE689 CODE690 Ctrl CODE691 D CODE692 nodemon CODE693 getting-started CODE694 getting-started-app CODE695 CODE696 CODE697 -dp 127.0.0.1:3000:3000 CODE698 -w /app CODE699 --mount type bind src pwd target /app CODE700 /app CODE701 node:lts-alpine CODE702 sh -c yarn install yarn run dev CODE703 sh CODE704 bash CODE705 yarn install CODE706 yarn run dev CODE707 package.json CODE708 dev CODE709 nodemon CODE710 docker logs CODE711 CODE712 rs CODE713 node src/index.js CODE714 CODE715 Ctrl CODE716 C CODE717 getting-started CODE718 getting-started-app CODE719 CODE720 -w /app --mount type bind src pwd target /app CODE721 sh -c yarn install yarn run dev CODE722 console docker logs -f nodemon -L src/index.js nodemon 2.0.20 nodemon to restart at any time enter CODE723 nodemon watching path s : . nodemon watching extensions: js mjs json nodemon starting CODE724 Using sqlite database at /etc/todos/todo.db Listening on port 3000 CODE725 console docker run -dp 127.0.0.1:3000:3000 -w /app --mount type bind src cd target /app node:lts-alpine sh -c yarn install yarn run dev CODE726 console docker logs -f nodemon -L src/index.js nodemon 2.0.20 nodemon to restart at any time enter CODE727 nodemon watching path s : . nodemon watching extensions: js mjs json nodemon starting CODE728 Using sqlite database at /etc/todos/todo.db Listening on port 3000 CODE729 console docker run -dp 127.0.0.1:3000:3000 -w //app --mount type bind src / pwd target /app node:lts-alpine sh -c yarn install yarn run dev CODE730 console docker logs -f nodemon -L src/index.js nodemon 2.0.20 nodemon to restart at any time enter CODE731 nodemon watching path s : . nodemon watching extensions: js mjs json nodemon starting CODE732 Using sqlite database at /etc/todos/todo.db Listening on port 3000 CODE733 console nodemon -L src/index.js nodemon 2.0.20 nodemon to restart at any time enter CODE734 nodemon watching path s : . nodemon watching extensions: js mjs json nodemon starting CODE735 Using sqlite database at /etc/todos/todo.db Listening on port 3000 CODE736 diff submitting 
+Adding... : Add Item submitting 
+Adding... : Add CODE737 console docker build -t getting-started 
+CODE738 console docker network create todo-app CODE739 console docker run -d --network todo-app --network-alias mysql -v todo-mysql-data:/var/lib/mysql -e MYSQL ROOT PASSWORD secret -e MYSQL DATABASE todos mysql:8.0 CODE740 powershell docker run -d CODE741 -v todo-mysql-data:/var/lib/mysql CODE742 -e MYSQL DATABASE todos CODE743 CODE744 CODE745 CODE746 --network-alias CODE747 todo-mysql-data CODE748 /var/lib/mysql CODE749 docker volume create CODE750 CODE751 CODE752 secret CODE753 todos CODE754 CODE755 CODE756 CODE757 CODE758 CODE759 CODE760 todos CODE761 CODE762 CODE763 dig CODE764 mysql CODE765 CODE766 CODE767 CODE768 CODE769 A CODE770 mysql CODE771 172.23.0.2 CODE772 mysql CODE773 --network-alias CODE774 mysql CODE775 MYSQL HOST CODE776 MYSQL USER CODE777 MYSQL PASSWORD CODE778 MYSQL DB CODE779 FILE CODE780 MYSQL PASSWORD FILE CODE781 getting-started-app CODE782 CODE783 CODE784 CODE785 -w /app -v pwd :/app CODE786 -e MYSQL HOST mysql CODE787 -e MYSQL PASSWORD secret CODE788 node:lts-alpine CODE789 CODE790 CODE791 CODE792 CODE793 CODE794 docker logs -f CODE795 CODE796 rs CODE797 node src/index.js CODE798 CODE799 secret CODE800 CODE801 CODE802 CODE803 CODE804 getting-started-app CODE805 compose.yaml CODE806 CODE807 CODE808 CODE809 CODE810 compose.yaml CODE811 compose.yaml CODE812 CODE813 CODE814 command CODE815 image CODE816 command CODE817 compose.yaml CODE818 CODE819 CODE820 -p 127.0.0.1:3000:3000 CODE821 ports CODE822 CODE823 CODE824 -w /app CODE825 -v pwd :/app CODE826 working dir CODE827 volumes CODE828 CODE829 CODE830 environment CODE831 CODE832 CODE833 CODE834 CODE835 mysql CODE836 CODE837 CODE838 docker run CODE839 volumes: CODE840 CODE841 CODE842 CODE843 CODE844 compose.yaml CODE845 CODE846 CODE847 compose.yaml CODE848 docker ps CODE849 docker rm -f CODE850 docker compose up CODE851 -d CODE852 CODE853 CODE854 CODE855 CODE856 docker compose logs -f CODE857 -f CODE858 CODE859 CODE860 docker compose logs -f app CODE861 compose.yaml CODE862 - CODE863 docker compose down CODE864 docker compose down CODE865 --volumes CODE866 docker image history CODE867 docker image history CODE868 getting-started CODE869 CODE870 CODE871 CODE872 CODE873 --no-trunc CODE874 CODE875 CODE876 CODE877 CODE878 package.json CODE879 package.json CODE880 package.json CODE881 CODE882 CODE883 docker build CODE884 CODE885 CODE886 CODE887 CODE888 src/static/index.html CODE889 CODE890 docker build -t getting-started 
+CODE891 CODE892 CODE893 CODE894 CODE895 build CODE896 FROM tomcat CODE897 build CODE898 --target CODE899 CODE900 CODE901 node:lts CODE902 docker run CODE903 docker compose up CODE904 chroot CODE905 chroot 
+The filesystem comes from the image
+However a container adds additional isolation not available when using chroot
+What is an image
+A running container uses an isolated filesystem
+This isolated filesystem is provided by an image and the image must contain everything needed to run an application - all dependencies configurations scripts binaries etc
+The image also contains other configurations for the container such as environment variables a default command to run and other metadata
+Next steps In this section you learned about containers and images
+Next you ll containerize a simple application and get hands-on with the concepts. button text Containerize an application url 02 our app.md
