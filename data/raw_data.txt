@@ -1,4 +1,4 @@
-## FILE: ./raw_content\get-started\docker-overview.md
+## FILE: raw_content\get-started\docker-overview.md
 
 ---
 description: Get an in-depth overview of the Docker platform including what it can
@@ -210,7 +210,7 @@ in a separate namespace and its access is limited to that namespace.
 - [Get started with Docker](/get-started/introduction/_index.md)
 
 
-## FILE: ./raw_content\get-started\get-docker.md
+## FILE: raw_content\get-started\get-docker.md
 
 ---
 description: Download and install Docker on the platform of your choice, including
@@ -270,7 +270,7 @@ section and choose the best installation path for you.
 > If you're looking for information on how to install Docker Engine, see [Docker Engine installation overview](/engine/install/).
 
 
-## FILE: ./raw_content\get-started\resources.md
+## FILE: raw_content\get-started\resources.md
 
 ---
 title: Educational resources
@@ -353,7 +353,7 @@ A number of Docker Captains have also created video courses on Docker and Kubern
 - [Subset of Docker docs in Japanese](https://docs.docker.jp/index.html) translated by Docker Captain [Masahito Zembutsu](https://github.com/zembutsu).
 
 
-## FILE: ./raw_content\get-started\_index.md
+## FILE: raw_content\get-started\_index.md
 
 ---
 title: Get started
@@ -407,7 +407,7 @@ Learn the foundational concepts and workflows of Docker.
 {{< grid items="get-started2" >}}
 
 
-## FILE: ./raw_content\get-started\docker-concepts\_index.md
+## FILE: raw_content\get-started\docker-concepts\_index.md
 
 ---
 build:
@@ -417,7 +417,7 @@ weight: 40
 ---
 
 
-## FILE: ./raw_content\get-started\docker-concepts\building-images\build-tag-and-publish-an-image.md
+## FILE: raw_content\get-started\docker-concepts\building-images\build-tag-and-publish-an-image.md
 
 ---
 title: Build, tag, and publish an image
@@ -656,7 +656,7 @@ Now that you have learned about building and publishing images, it's time to lea
 
 
 
-## FILE: ./raw_content\get-started\docker-concepts\building-images\multi-stage-builds.md
+## FILE: raw_content\get-started\docker-concepts\building-images\multi-stage-builds.md
 
 ---
 title: Multi-stage builds
@@ -996,7 +996,7 @@ Now that you have the project, you’re ready to create the `Dockerfile`.
 
 
 
-## FILE: ./raw_content\get-started\docker-concepts\building-images\understanding-image-layers.md
+## FILE: raw_content\get-started\docker-concepts\building-images\understanding-image-layers.md
 
 ---
 title: Understanding the image layers
@@ -1214,7 +1214,7 @@ As hinted earlier, most image builds don’t use `docker container commit`. Inst
 {{< button text="Writing a Dockerfile" url="writing-a-dockerfile" >}}
 
 
-## FILE: ./raw_content\get-started\docker-concepts\building-images\using-the-build-cache.md
+## FILE: raw_content\get-started\docker-concepts\building-images\using-the-build-cache.md
 
 ---
 title: Using the build cache
@@ -1550,7 +1550,7 @@ Now that you understand how to use the Docker build cache effectively, you're re
 {{< button text="Multi-stage builds" url="multi-stage-builds" >}}
 
 
-## FILE: ./raw_content\get-started\docker-concepts\building-images\writing-a-dockerfile.md
+## FILE: raw_content\get-started\docker-concepts\building-images\writing-a-dockerfile.md
 
 ---
 title: Writing a Dockerfile
@@ -1725,7 +1725,7 @@ Now that you have created a Dockerfile and learned the basics, it's time to lear
 
 
 
-## FILE: ./raw_content\get-started\docker-concepts\building-images\_index.md
+## FILE: raw_content\get-started\docker-concepts\building-images\_index.md
 
 ---
 title: Building images
@@ -1762,7 +1762,7 @@ production environments.
 - Multi-stage builds
 
 
-## FILE: ./raw_content\get-started\docker-concepts\running-containers\multi-container-applications.md
+## FILE: raw_content\get-started\docker-concepts\running-containers\multi-container-applications.md
 
 ---
 title: Multi-container applications
@@ -1989,7 +1989,7 @@ In this guide, you learned how easy it is to use Docker Compose to start and sto
 
 
 
-## FILE: ./raw_content\get-started\docker-concepts\running-containers\overriding-container-defaults.md
+## FILE: raw_content\get-started\docker-concepts\running-containers\overriding-container-defaults.md
 
 ---
 title: Overriding container defaults
@@ -2202,7 +2202,7 @@ Now that you have learned about overriding container defaults, it's time to lear
 
 
 
-## FILE: ./raw_content\get-started\docker-concepts\running-containers\persisting-container-data.md
+## FILE: raw_content\get-started\docker-concepts\running-containers\persisting-container-data.md
 
 ---
 title: Persisting container data
@@ -2386,7 +2386,7 @@ Now that you have learned about persisting container data, it’s time to learn 
 
 
 
-## FILE: ./raw_content\get-started\docker-concepts\running-containers\publishing-ports.md
+## FILE: raw_content\get-started\docker-concepts\running-containers\publishing-ports.md
 
 ---
 title: Publishing and exposing ports
@@ -2524,7 +2524,7 @@ Now that you understand how to publish and expose ports, you're ready to learn h
 
 
 
-## FILE: ./raw_content\get-started\docker-concepts\running-containers\sharing-local-files.md
+## FILE: raw_content\get-started\docker-concepts\running-containers\sharing-local-files.md
 
 ---
 title: Sharing local files with containers
@@ -2730,7 +2730,7 @@ Now that you have learned about sharing local files with containers, it’s time
 {{< button text="Multi-container applications" url="Multi-container applications" >}}
 
 
-## FILE: ./raw_content\get-started\docker-concepts\running-containers\_index.md
+## FILE: raw_content\get-started\docker-concepts\running-containers\_index.md
 
 ---
 build:
@@ -2740,7 +2740,7 @@ weight: 30
 ---
 
 
-## FILE: ./raw_content\get-started\docker-concepts\the-basics\what-is-a-container.md
+## FILE: raw_content\get-started\docker-concepts\the-basics\what-is-a-container.md
 
 ---
 title: What is a container?
@@ -2940,7 +2940,7 @@ Now that you have learned the basics of a Docker container, it's time to learn a
 {{< button text="What is an image?" url="what-is-an-image" >}}
 
 
-## FILE: ./raw_content\get-started\docker-concepts\the-basics\what-is-a-registry.md
+## FILE: raw_content\get-started\docker-concepts\the-basics\what-is-a-registry.md
 
 ---
 title: What is a registry?
@@ -3111,7 +3111,7 @@ Now that you understand the basics of containers and images, you're ready to lea
 {{< button text="What is Docker Compose?" url="what-is-Docker-Compose" >}}
 
 
-## FILE: ./raw_content\get-started\docker-concepts\the-basics\what-is-an-image.md
+## FILE: raw_content\get-started\docker-concepts\the-basics\what-is-an-image.md
 
 ---
 title: What is an image?
@@ -3315,7 +3315,7 @@ Now that you have learned the basics of images, it's time to learn about distrib
 {{< button text="What is a registry?" url="what-is-a-registry" >}}
 
 
-## FILE: ./raw_content\get-started\docker-concepts\the-basics\what-is-docker-compose.md
+## FILE: raw_content\get-started\docker-concepts\the-basics\what-is-docker-compose.md
 
 ---
 title: What is Docker Compose?
@@ -3461,7 +3461,7 @@ This page was a brief introduction to Compose. In the following resources, you c
 * [How Compose works](/compose/intro/compose-application-model/)
 
 
-## FILE: ./raw_content\get-started\docker-concepts\the-basics\_index.md
+## FILE: raw_content\get-started\docker-concepts\the-basics\_index.md
 
 ---
 build:
@@ -3471,7 +3471,7 @@ weight: 10
 ---
 
 
-## FILE: ./raw_content\get-started\introduction\build-and-push-first-image.md
+## FILE: raw_content\get-started\introduction\build-and-push-first-image.md
 
 ---
 title: Build and push your first image
@@ -3685,7 +3685,7 @@ Now that you’ve built an image, it's time to discuss why you as a developer sh
 
 
 
-## FILE: ./raw_content\get-started\introduction\develop-with-containers.md
+## FILE: raw_content\get-started\introduction\develop-with-containers.md
 
 ---
 title: Develop with containers
@@ -3858,7 +3858,7 @@ Now that the application has been updated, you’re ready to learn about packagi
 
 
 
-## FILE: ./raw_content\get-started\introduction\get-docker-desktop.md
+## FILE: raw_content\get-started\introduction\get-docker-desktop.md
 
 ---
 title: Get Docker Desktop 
@@ -3956,7 +3956,7 @@ Now that you have Docker Desktop installed and ran your first container, it's ti
 {{< button text="Develop with containers" url="develop-with-containers" >}}
 
 
-## FILE: ./raw_content\get-started\introduction\whats-next.md
+## FILE: raw_content\get-started\introduction\whats-next.md
 
 ---
 title: What's next 
@@ -4041,7 +4041,7 @@ Master essential techniques for exposing ports, overriding defaults, persisting 
 {{< grid items="running-containers" >}}
 
 
-## FILE: ./raw_content\get-started\introduction\_index.md
+## FILE: raw_content\get-started\introduction\_index.md
 
 ---
 title: Introduction
@@ -4083,7 +4083,7 @@ Docker's powerful ecosystem for collaborative development and deployment.
 - Publish your image on Docker Hub
 
 
-## FILE: ./raw_content\get-started\workshop\02_our_app.md
+## FILE: raw_content\get-started\workshop\02_our_app.md
 
 ---
 title: Containerize an application
@@ -4254,7 +4254,7 @@ Next, you're going to make a modification to your app and learn how to update yo
 {{< button text="Update the application" url="03_updating_app.md" >}}
 
 
-## FILE: ./raw_content\get-started\workshop\03_updating_app.md
+## FILE: raw_content\get-started\workshop\03_updating_app.md
 
 ---
 title: Update the application
@@ -4370,7 +4370,7 @@ Next, you'll learn how to share images with others.
 {{< button text="Share the application" url="04_sharing_app.md" >}}
 
 
-## FILE: ./raw_content\get-started\workshop\04_sharing_app.md
+## FILE: raw_content\get-started\workshop\04_sharing_app.md
 
 ---
 title: Share the application
@@ -4526,7 +4526,7 @@ In the next section, you'll learn how to persist data in your containerized appl
 {{< button text="Persist the DB" url="05_persisting_data.md" >}}
 
 
-## FILE: ./raw_content\get-started\workshop\05_persisting_data.md
+## FILE: raw_content\get-started\workshop\05_persisting_data.md
 
 ---
 title: Persist the DB
@@ -4740,7 +4740,7 @@ Next, you'll learn how you can develop your app more efficiently using bind moun
 {{< button text="Use bind mounts" url="06_bind_mounts.md" >}}
 
 
-## FILE: ./raw_content\get-started\workshop\06_bind_mounts.md
+## FILE: raw_content\get-started\workshop\06_bind_mounts.md
 
 ---
 title: Use bind mounts
@@ -5195,7 +5195,7 @@ talk to each other? You'll learn about that in the next section.
 {{< button text="Multi container apps" url="07_multi_container.md" >}}
 
 
-## FILE: ./raw_content\get-started\workshop\07_multi_container.md
+## FILE: raw_content\get-started\workshop\07_multi_container.md
 
 ---
 title: Multi container apps
@@ -5528,7 +5528,7 @@ much easier way and let others spin them up with a single, simple command.
 {{< button text="Use Docker Compose" url="08_using_compose.md" >}}
 
 
-## FILE: ./raw_content\get-started\workshop\08_using_compose.md
+## FILE: raw_content\get-started\workshop\08_using_compose.md
 
 ---
 title: Use Docker Compose
@@ -5824,7 +5824,7 @@ Next, you'll learn about a few best practices you can use to improve your Docker
 {{< button text="Image-building best practices" url="09_image_best.md" >}}
 
 
-## FILE: ./raw_content\get-started\workshop\09_image_best.md
+## FILE: raw_content\get-started\workshop\09_image_best.md
 
 ---
 title: Image-building best practices
@@ -6040,7 +6040,7 @@ In the next section, you'll learn about additional resources you can use to cont
 {{< button text="What next" url="10_what_next.md" >}}
 
 
-## FILE: ./raw_content\get-started\workshop\10_what_next.md
+## FILE: raw_content\get-started\workshop\10_what_next.md
 
 ---
 title: What next after the Docker workshop
@@ -6097,7 +6097,7 @@ If you'd like to see how containers are built from scratch, Liz Rice from Aqua S
 <iframe src="https://www.youtube-nocookie.com/embed/8fi7uSYlOdc" style="max-width: 100%; aspect-ratio: 16 / 9;" width="560" height="auto" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
-## FILE: ./raw_content\get-started\workshop\_index.md
+## FILE: raw_content\get-started\workshop\_index.md
 
 ---
 title: Overview of the Docker workshop
