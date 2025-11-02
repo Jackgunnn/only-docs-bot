@@ -10,8 +10,8 @@ def load_data(docs_dir="raw_content", output_file="data/raw_data.txt"):
     Args:
         docs_dir (str): Directory to search for markdown files.
         output_file (str): Path to save the combined text.
-
     """
+
     markdown_files = []
 
     # Collect all .md file paths
@@ -41,7 +41,6 @@ def clean_data(input_file="data/raw_data.txt", output_file="data/cleaned_data.tx
     Args:
         input_file (str): Directory to search for markdown files.
         output_file (str): Path to save the combined text.  
-
     """
 
     # --- Read raw file ---
@@ -54,14 +53,6 @@ def clean_data(input_file="data/raw_data.txt", output_file="data/cleaned_data.tx
 
     # Remove YAML front matter
     raw = re.sub(r"^---[\s\S]*?---\s*", "", raw, flags=re.MULTILINE)
-
-    # Extract and temporarily replace code blocks
-    code_blocks = {}
-    def save_code_block(match):
-        key = f"@@CODE{len(code_blocks)}@@"
-        code_blocks[key] = match.group(0)
-        return key
-    raw = re.sub(r"```[\s\S]*?```|`[^`]+`", save_code_block, raw)
 
     # Remove markdown formatting symbols
     raw = re.sub(r"[#*_>\[\]{}~=]+", " ", raw)
@@ -78,10 +69,6 @@ def clean_data(input_file="data/raw_data.txt", output_file="data/cleaned_data.tx
 
     # Split sentences → remove punctuation → newline
     raw = re.sub(r'[.!?]\s+(?=[A-Z0-9])', r'\n', raw)
-
-    # Restore code blocks
-    for key, value in code_blocks.items():
-        raw = raw.replace(key, value)
 
     # --- Save to a new text file ---
     with open(output_file, "w", encoding="utf-8") as f:
