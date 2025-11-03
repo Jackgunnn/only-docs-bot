@@ -76,5 +76,3 @@ def clean_data(input_file="data/raw_data.txt", output_file="data/cleaned_data.tx
 
     print(f"Cleaned Data saved to {output_file}")
 
-load_data()
-clean_data()
