@@ -1,234 +1,111 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Only Docs bot</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_forward_ios" />
+  <title>ChatGPT UI</title>
   <style>
-    :root{
-      --bg: #000;
-      --blue: #00aaff;
-      --yellow: #ffee00;
-      --white: #ffffff;
-      --gray-bubble: rgba(255, 255, 255, 0.08);
-      --maxWidth: 1000px;
-      --input-height: 40px;
-      --gutter: 22px;
-    }
-
-    html, body {
-      height: 100%;
-      margin: 0;
-      background: var(--bg);
-      font-family: sans-serif;
-      color: var(--white);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      overflow: hidden;
-    }
-
-    /* Top-left title */
-    .brand {
-      position: fixed;
-      left: 18px;
-      top: 12px;
-      z-index: 40;
+    body {
+      font-family: Arial;
       display: flex;
-      gap: 8px;
-      align-items: baseline;
-      user-select: none;
-      font-weight: 700;
-      font-size: 18px;
+      justify-content: center;
+      background: #f2f2f2;
     }
-    .brand .only { color: var(--yellow); }
-    .brand .docs { color: var(--blue); }
-    .brand .bot { color: var(--white); }
-
-    /* Main stage */
-    .stage {
-      max-width: var(--maxWidth);
-      width: min(92%, var(--maxWidth));
-      margin: 72px auto 0 auto;
-      height: calc(100vh - 72px - var(--input-height) - 12px);
-      display: flex;
-      flex-direction: column;
+    #container {
+      margin-top: 50px;
+      width: 450px;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px #aaa;
     }
-
-    /* Scrollable chat area */
-    .chat {
-      flex: 1;
+    #chat {
+      height: 400px;
       overflow-y: auto;
-      padding: 28px var(--gutter);
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 10px;
+    }
+    .userMsg {
+      background: #007bff;
+      color: white;
+      padding: 8px;
+      border-radius: 8px;
+      margin: 8px 0;
+      text-align: right;
+    }
+    .botMsg {
+      background: #e9e9e9;
+      padding: 8px;
+      border-radius: 8px;
+      margin: 8px 0;
+      text-align: left;
+    }
+    #inputBox {
       display: flex;
-      flex-direction: column;
-      gap: 16px;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(255,255,255,0.15) transparent;
+      margin-top: 10px;
     }
-    .chat::-webkit-scrollbar { width: 10px; }
-    .chat::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 8px; }
-
-    /* Message rows */
-    .msg-row {
-      display: flex;
-      width: 100%;
-    }
-    .msg-row.bot { justify-content: flex-start; }
-    .msg-row.user { justify-content: flex-end; }
-
-    /* Chat Bubbles */
-    .bubble {
-      max-width: 76%;
-      padding: 16px 20px;
-      border-radius: 16px;
-      background: var(--gray-bubble);
-      font-size: 18px;
-      line-height: 1.3;
-      white-space: pre-wrap;
-      word-break: break-word;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-    .bubble.bot { color: var(--blue); }
-    .bubble.user { color: var(--yellow); }
-
-    /* Input bar */
-    .input-bar {
-      position: fixed;
-      left: 50%;
-      transform: translateX(-50%);
-      bottom: 14px;
-      width: min(92%, var(--maxWidth));
-      height: var(--input-height);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      z-index: 60;
-      padding: 12px 16px;
-      border-radius: 16px;
-      border: 2px solid rgba(255,255,255,0.25);
-      background: rgba(0,0,0,0.2);
-      backdrop-filter: blur(2px);
-      box-shadow: 0 4px 14px rgba(0,0,0,0.45);
-    }
-
-    /* Send Symbol */
-    .material-symbols-outlined {
-      font-variation-settings:
-        'FILL' 0,
-        'wght' 400,
-        'GRAD' 0,
-        'opsz' 20
-    }
-
-    .input-left {
-      display: flex;
-      align-items: center;
-      width: 100%;
-    }
-
-    .input-field {
+    input {
       flex: 1;
-      border: none;
-      outline: none;
-      background: transparent;
-      color: #ddd;
-      font-size: 18px;
-      padding: 6px 8px;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #aaa;
     }
-    .input-field::placeholder { color: rgba(255,255,255,0.35); }
-
-    .send-btn {
-      width: 60px;
-      height: 50px;
-      display: inline-grid;
-      place-items: center;
+    button {
+      margin-left: 10px;
+      padding: 10px 15px;
       border: none;
-      background: transparent;
+      background: green;
+      color: white;
+      border-radius: 8px;
       cursor: pointer;
-    }
-
-    @media (max-width:520px){
-      :root{ --input-height: 72px; }
-      .bubble { font-size: 16px; padding: 14px 16px; }
-      .brand { font-size: 18px; }
     }
   </style>
 </head>
+
 <body>
+  <div id="container">
+    <h2>ONLY DOCS</h2>
 
-  <!-- Brand title -->
-  <div class="brand">
-    <div class="only">Only</div>
-    <div class="docs">Docs</div>
-    <div class="bot">bot</div>
-  </div>
+    <div id="chat"></div>
 
-  <!-- Chat area -->
-  <div class="stage">
-    <div id="chat" class="chat"></div>
-  </div>
-
-  <!-- Input bar -->
-  <div class="input-bar">
-    <div class="input-left">
-      <input id="msgInput" type="text" class="input-field" placeholder="Ask me..." />
+    <div id="inputBox">
+      <input id="input" placeholder="Ask something...">
+      <button onclick="sendMessage()">Send</button>
     </div>
-    <button id="sendBtn" class="send-btn" aria-label="Send">
-        <span class="material-symbols-outlined" style="font-size:28px; color:#00aaff;">arrow_forward_ios</span>
-    </button>      
   </div>
 
-  <script>
-    (function(){
-      const chat = document.getElementById('chat');
-      const input = document.getElementById('msgInput');
-      const sendBtn = document.getElementById('sendBtn');
+<script>
+const API_URL = "http://127.0.0.1:8000/ask";
 
-      function createMessage(text, who){
-        const row = document.createElement('div');
-        row.className = 'msg-row ' + who;
-        const bubble = document.createElement('div');
-        bubble.className = 'bubble ' + who;
-        bubble.textContent = text;
-        row.appendChild(bubble);
-        return row;
-      }
+async function sendMessage() {
+  const query = document.getElementById("input").value;
+  if (!query) return;
 
-      function appendAndScroll(node){
-        chat.appendChild(node);
-        requestAnimationFrame(() => {
-          chat.scrollTo({ top: chat.scrollHeight, behavior: 'smooth' });
-        });
-      }
+  addMessage(query, "user");
 
-      function sendMessage(){
-        const val = input.value.trim();
-        if(!val) return;
-        appendAndScroll(createMessage(val, 'user'));
-        input.value = '';
-        input.focus();
+  const res = await fetch(API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ query }),
+  });
 
-        // simulate bot response for demo
-        setTimeout(() => {
-          appendAndScroll(createMessage("Got it — \"" + val + "\"", 'bot'));
-        }, 600);
-      }
+  const data = await res.json();
 
-      sendBtn.addEventListener('click', sendMessage);
-      input.addEventListener('keydown', (e) => {
-        if(e.key === 'Enter' && !e.shiftKey){
-          e.preventDefault();
-          sendMessage();
-        }
-      });
+  addMessage(data.response ?? "No response", "bot");
 
-      window.addEventListener('load', () => {
-        input.focus();
-      });
-    })();
-  </script>
+  document.getElementById("input").value = "";
+}
+
+function addMessage(text, sender) {
+  const chat = document.getElementById("chat");
+  const msg = document.createElement("div");
+
+  msg.className = sender === "user" ? "userMsg" : "botMsg";
+  msg.innerText = text;
+
+  chat.appendChild(msg);
+  chat.scrollTop = chat.scrollHeight;
+}
+</script>
 
 </body>
 </html>
