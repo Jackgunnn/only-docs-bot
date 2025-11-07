@@ -87,8 +87,9 @@ def ask(data: AskRequest):
 
     # 3️⃣ Build prompt
     prompt = f"""
-You are a helpful assistant.
-
+You are a helpful assistant. 
+Answer **only** from the provided context. 
+If context does not contain the answer, say "Not found in context."
 Context:
 {context}
 
