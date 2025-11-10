@@ -1,11 +1,13 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-import chromadb
-from sentence_transformers import SentenceTransformer
 import subprocess
+from main import *
+from configurations import EMBED_MODEL, DOCKER_COLLECS
+
 
 app = FastAPI()
+
 
 # ✅ CORS FIX
 app.add_middleware(
@@ -16,20 +18,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-print("Loading Embedding Model...")
-embed_model = SentenceTransformer("all-MiniLM-L6-v2")
-
-client = chromadb.PersistentClient(path="./chroma_db")
-collection = client.get_or_create_collection("docker_docs")
-from fastapi import FastAPI
-from pydantic import BaseModel
-from fastapi.middleware.cors import CORSMiddleware
-import chromadb
-from sentence_transformers import SentenceTransformer
-import subprocess
-
-# ✅ Initialize
-app = FastAPI()
 
 # ✅ Allow browser access
 app.add_middleware(
@@ -40,16 +28,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ✅ Load embedding model
-embed_model = SentenceTransformer("all-MiniLM-L6-v2")
-
-# ✅ Load ChromaDB
-client = chromadb.PersistentClient(path="./chroma_db")
-collection = client.get_or_create_collection("docker_docs")
 
 # ✅ Request body
 class AskRequest(BaseModel):
     query: str
+
 
 # ✅ Call Ollama
 def generate_llm_response(prompt: str):
@@ -74,10 +57,10 @@ def ask(data: AskRequest):
     query = data.query
 
     # 1️⃣ Embed query
-    query_embedding = embed_model.encode(query).tolist()
+    query_embedding = EMBED_MODEL.encode(query).tolist()
 
     # 2️⃣ Retrieve similar docs
-    results = collection.query(
+    results = DOCKER_COLLECS.query(
         query_embeddings=[query_embedding],
         n_results=3
     )
@@ -87,16 +70,20 @@ def ask(data: AskRequest):
 
     # 3️⃣ Build prompt
     prompt = f"""
-You are a helpful assistant.
+        Please answer the query using only the provided context. 
+        If the question goes beyond your current knowledge of Docker, respond with:
+        “I have limited knowledge of Docker, and this is beyond my current scope. 
+        I’m still being trained and tested — sorry for the inconvenience." If the question
+        is inappropriate, respond with: "Fuck You!!!"
 
-Context:
-{context}
+        Context:
+        {context}
+    
+        Question:
+        {query}
 
-Question:
-{query}
-
-Answer:
-"""
+        Answer:
+    """
 
     # 4️⃣ Pass to LLM
     response = generate_llm_response(prompt)
