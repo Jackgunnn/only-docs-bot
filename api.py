@@ -58,11 +58,14 @@ def ask(data: AskRequest):
     context = "\n\n".join(docs)
 
     prompt = f"""
-        Please answer the query using only the provided context. 
+        Please answer the query clearly and directly, using only the provided context. 
         If the question goes beyond your current knowledge of Docker, respond with:
         “I have limited knowledge of Docker, and this is beyond my current scope. 
         I’m still being trained and tested — sorry for the inconvenience." If the question
         is inappropriate, respond with: "Fuck You!!!"
+
+        If the answer involves a command, format it in markdown code blocks.
+        
 
         Context:
         {context}
