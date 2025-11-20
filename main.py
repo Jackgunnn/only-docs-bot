@@ -1,7 +1,6 @@
 import os
 import re
 from bs4 import BeautifulSoup
-from sentence_transformers import SentenceTransformer
 from configurations import RAW_DIR, RAW_DATA, CLEANED_DATA, EMBED_MODEL, DOCKER_COLLECS
 
 def load_data(docs_dir=RAW_DIR, output_file=RAW_DATA):
