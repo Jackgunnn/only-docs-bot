@@ -35,7 +35,6 @@ only-docs-bot/
 ├── docker-compose.yml
 ├── requirements.txt
 ├── .env                     # Never committed
-├── .env.example             # Committed — shows required keys
 └── .gitignore
 ```
 
