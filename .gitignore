@@ -1,0 +1,20 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Environment
+.env
+
+# Data
+chroma_db/
+uploads/
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
